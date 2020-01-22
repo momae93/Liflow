@@ -1,4 +1,4 @@
-package com.example.liflow.ui.dashboard
+package com.example.liflow.ui.newPost
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.liflow.R
 
-class DashboardFragment : Fragment() {
+class NewPostFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var newPostViewModel: NewPostViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        newPostViewModel =
+            ViewModelProviders.of(this).get(NewPostViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_new_post, container, false)
+        val textView: TextView = root.findViewById(R.id.fragment_new_post_textView_title)
+        newPostViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

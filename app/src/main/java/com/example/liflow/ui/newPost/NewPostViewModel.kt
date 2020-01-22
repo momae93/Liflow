@@ -1,13 +1,13 @@
-package com.example.liflow.ui.dashboard
+package com.example.liflow.ui.newPost
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class NewPostViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "New post page in progress ..."
     }
     val text: LiveData<String> = _text
 }

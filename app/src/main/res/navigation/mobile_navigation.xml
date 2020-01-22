@@ -3,23 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_world">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.liflow.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_world"
+        android:name="com.example.liflow.ui.world.WorldFragment"
+        android:label="@string/title_world"
+        tools:layout="@layout/fragment_world" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.liflow.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_search"
+        android:name="com.example.liflow.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.liflow.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_new"
+        android:name="com.example.liflow.ui.newPost.NewPostFragment"
+        android:label="@string/title_new"
+        tools:layout="@layout/fragment_new_post" />
+
+    <fragment
+        android:id="@+id/navigation_like"
+        android:name="com.example.liflow.ui.like.LikeFragment"
+        android:label="@string/title_like"
+        tools:layout="@layout/fragment_like" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.liflow.ui.profile.Profile"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
