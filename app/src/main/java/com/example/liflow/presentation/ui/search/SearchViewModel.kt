@@ -1,13 +1,13 @@
-package com.example.liflow.ui.world
+package com.example.liflow.presentation.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class WorldViewModel : ViewModel() {
+class SearchViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "World page in progress ..."
+        value = "Search screen in progress ..."
     }
     val text: LiveData<String> = _text
 }

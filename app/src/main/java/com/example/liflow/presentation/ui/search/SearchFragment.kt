@@ -1,4 +1,4 @@
-package com.example.liflow.ui.search
+package com.example.liflow.presentation.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater

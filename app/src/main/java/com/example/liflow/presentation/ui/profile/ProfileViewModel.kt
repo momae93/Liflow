@@ -1,4 +1,4 @@
-package com.example.liflow.ui.profile
+package com.example.liflow.presentation.ui.profile
 
 import androidx.lifecycle.ViewModel
 

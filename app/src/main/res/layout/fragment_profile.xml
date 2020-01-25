@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.Profile">
+    tools:context=".presentation.ui.profile.Profile">
 
     <TextView
         android:id="@+id/fragment_profile_textView_title"

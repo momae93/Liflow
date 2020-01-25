@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.newPost.NewPostFragment">
+    tools:context=".presentation.ui.newPost.NewPostFragment">
 
     <TextView
         android:id="@+id/fragment_new_post_textView_title"

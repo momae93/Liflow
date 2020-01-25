@@ -1,4 +1,4 @@
-package com.example.liflow.ui.world
+package com.example.liflow.presentation.ui.world
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,8 +19,7 @@ class WorldFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        worldViewModel =
-            ViewModelProviders.of(this).get(WorldViewModel::class.java)
+        worldViewModel = ViewModelProviders.of(this).get(WorldViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_world, container, false)
         val textView: TextView = root.findViewById(R.id.fragment_world_textView_title)
         worldViewModel.text.observe(this, Observer {

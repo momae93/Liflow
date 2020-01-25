@@ -1,4 +1,4 @@
-package com.example.liflow.ui.profile
+package com.example.liflow.presentation.ui.like
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 
 import com.example.liflow.R
 
-class Profile : Fragment() {
+class LikeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = Profile()
+        fun newInstance() = LikeFragment()
     }
 
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: LikeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_like, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(LikeViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

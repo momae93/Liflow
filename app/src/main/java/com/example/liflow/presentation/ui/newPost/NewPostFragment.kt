@@ -1,4 +1,4 @@
-package com.example.liflow.ui.newPost
+package com.example.liflow.presentation.ui.newPost
 
 import android.os.Bundle
 import android.view.LayoutInflater
