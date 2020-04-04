@@ -20,4 +20,9 @@
     <string name="activity_login_forgot_password">Forgot password ?</string>
     <string name="activity_login_log_in">Log in</string>
     <string name="activity_login_create_an_account">Create an account</string>
+    <string name="fragment_profile_stats_followers">Followers</string>
+    <string name="fragment_profile_stats_following">Following</string>
+    <string name="fragment_profile_stats_claps">Claps</string>
+    <string name="fragment_profile_posts_liked">Liked</string>
+    <string name="fragment_profile_posts_written">Written</string>
 </resources>

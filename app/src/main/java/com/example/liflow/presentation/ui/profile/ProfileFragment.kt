@@ -9,10 +9,10 @@ import android.view.ViewGroup
 
 import com.example.liflow.R
 
-class Profile : Fragment() {
+class ProfileFragment : Fragment() {
 
     companion object {
-        fun newInstance() = Profile()
+        fun newInstance() = ProfileFragment()
     }
 
     private lateinit var viewModel: ProfileViewModel
