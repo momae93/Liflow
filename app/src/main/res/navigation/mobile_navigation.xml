@@ -4,34 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_world">
+        <fragment
+            android:id="@+id/navigation_world"
+            android:name="com.example.liflow.presentation.ui.world.WorldFragment"
+            android:label="@string/title_world"
+            tools:layout="@layout/fragment_world" />
+        <fragment
+            android:id="@+id/navigation_search"
+            android:name="com.example.liflow.presentation.ui.search.SearchFragment"
+            android:label="@string/title_search"
+            tools:layout="@layout/fragment_search" />
 
-    <fragment
-        android:id="@+id/navigation_world"
-        android:name="com.example.liflow.presentation.ui.world.WorldFragment"
-        android:label="@string/title_world"
-        tools:layout="@layout/fragment_world" />
+        <fragment
+            android:id="@+id/navigation_new"
+            android:name="com.example.liflow.presentation.ui.newPost.NewPostFragment"
+            android:label="@string/title_new"
+            tools:layout="@layout/fragment_new_post" />
 
-    <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.example.liflow.presentation.ui.search.SearchFragment"
-        android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
-
-    <fragment
-        android:id="@+id/navigation_new"
-        android:name="com.example.liflow.presentation.ui.newPost.NewPostFragment"
-        android:label="@string/title_new"
-        tools:layout="@layout/fragment_new_post" />
-
-    <fragment
-        android:id="@+id/navigation_like"
-        android:name="com.example.liflow.presentation.ui.like.LikeFragment"
-        android:label="@string/title_like"
-        tools:layout="@layout/fragment_like" />
-
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.liflow.presentation.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        <fragment
+            android:id="@+id/navigation_like"
+            android:name="com.example.liflow.presentation.ui.like.LikeFragment"
+            android:label="@string/title_like"
+            tools:layout="@layout/fragment_like" />
+        <fragment
+            android:id="@+id/navigation_profile"
+            android:name="com.example.liflow.presentation.ui.profile.ProfileFragment"
+            android:label="@string/title_profile"
+            tools:layout="@layout/fragment_profile" />
 </navigation>

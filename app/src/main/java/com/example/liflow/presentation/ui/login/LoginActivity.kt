@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.liflow.BR
-import com.example.liflow.MainActivity
+import com.example.liflow.presentation.ui.main.MainActivity
 import com.example.liflow.R
 import com.example.liflow.databinding.ActivityLoginBinding
 import com.example.liflow.presentation.models.State
