@@ -8,5 +8,6 @@ data class User(
     val lastname: String,
     val description: String,
     val age: Int,
+    val isMale: Boolean,
     val totalClap: Int
 )

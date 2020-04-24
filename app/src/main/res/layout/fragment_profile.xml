@@ -5,12 +5,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.liflow.presentation.ui.profile.ProfileViewModel" />
+            type="com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.profile.ProfileFragment">
+        tools:context=".presentation.ui.profile.fragment.ProfileFragment">
 
         <TextView
             android:id="@+id/fragment_profile_textView_fullname"
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/lato_bold"
-            android:text="Mickael AU"
+            android:text="@{viewModel.profileDetails.fullname}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_big"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,17 +27,35 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/fragment_profile_textView_info"
+            android:id="@+id/fragment_profile_textView_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/lato"
-            android:text="Male 22 y.o."
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:text="@{viewModel.profileDetails.gender}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_caption"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_profile_textView_age"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_textView_fullname" />
+
+        <TextView
+            android:id="@+id/fragment_profile_textView_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="@font/lato"
+            android:text="@{viewModel.profileDetails.age}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_caption"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_gender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fragment_profile_textView_gender"
+            app:layout_constraintTop_toTopOf="@+id/fragment_profile_textView_gender" />
 
         <ImageButton
             android:id="@+id/fragment_profile_imageButton_settings"
@@ -46,7 +65,7 @@
             android:layout_marginRight="24dp"
             android:background="@null"
             android:src="@drawable/ic_settings"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_info"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_age"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,10 +78,10 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:src="@drawable/ic_user"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_textView_info"
-            android:src="@drawable/ic_user" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_textView_age" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_profile_layout_stats"
@@ -83,8 +102,8 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/fragment_profile_stats_following"
-                android:textSize="@dimen/text_size_big"
                 android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_profile_textView_followers_nb"
                 app:layout_constraintEnd_toStartOf="@+id/fragment_profile_textView_following"
@@ -100,8 +119,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
                 android:text="@string/fragment_profile_stats_following"
-                android:textSize="@dimen/text_size_big"
                 android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_followers"
                 app:layout_constraintEnd_toStartOf="@+id/fragment_profile_textView_claps"
@@ -115,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
                 android:text="@string/fragment_profile_stats_claps"
-                android:textSize="@dimen/text_size_big"
                 android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_following"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +150,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lato"
-                android:text="30"
+                android:text="@{viewModel.profileDetails.totalFollower}"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/fragment_profile_textView_followers"
@@ -144,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
-                android:text="40"
+                android:text="@{viewModel.profileDetails.totalFollowing}"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/fragment_profile_textView_following"
@@ -156,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato"
-                android:text="33"
+                android:text="@{viewModel.profileDetails.totalClap}"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/fragment_profile_textView_claps"
@@ -174,9 +193,9 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:fontFamily="@font/lato"
+            android:text="@{viewModel.profileDetails.description}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_regular"
-            android:text="I'm Mickael ! This is my description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_layout_stats" />
@@ -198,9 +217,9 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/fragment_profile_posts_liked"
+                android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_big"
-                android:textAllCaps="true"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_profile_textView_likedPosts_nb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -214,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="128 posmos"
+                android:text="@{viewModel.profileDetails.totalPostLiked}"
                 android:textColor="@color/colorGreenMint"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/fragment_profile_textView_liked"
@@ -249,9 +268,9 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/fragment_profile_posts_written"
+                android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_big"
-                android:textAllCaps="true"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_profile_textView_written_nb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -265,7 +284,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="128 posmos"
+                android:text="@{viewModel.profileDetails.totalPostWritten}"
                 android:textColor="@color/colorGreenMint"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/fragment_profile_textView_written"

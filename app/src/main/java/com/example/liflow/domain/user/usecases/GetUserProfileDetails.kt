@@ -26,6 +26,7 @@ class GetUserProfileDetails: AbstractUseCase<GetUserProfileDetails.Response, Get
         val lastname: String,
         val description: String,
         val age: Int,
+        val isMale: Boolean,
         val totalFollower: Int,
         val totalFollowing: Int,
         val totalClap: Int,

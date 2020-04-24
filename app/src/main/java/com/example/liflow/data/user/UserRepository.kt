@@ -28,6 +28,7 @@ class UserRepository @Inject constructor() : IUserRepository {
             firstname = user.firstname,
             lastname = user.lastname,
             age = user.age,
+            isMale = user.isMale,
             totalClap = user.totalClap,
             description = user.description,
             totalFollower = MockDatabase.mockFollowingUser.filter { it.followingUserId == user.id }.count(),

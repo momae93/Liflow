@@ -1,32 +1,32 @@
-package com.example.liflow.presentation.ui.profile
+package com.example.liflow.presentation.ui.profile.fragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProviders
 import com.example.liflow.BR
-
 import com.example.liflow.R
 import com.example.liflow.databinding.FragmentProfileBinding
 import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseFragment
-import com.example.liflow.presentation.ui.login.LoginViewModel
+import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
 import javax.inject.Inject
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
     companion object {
-        fun newInstance() = ProfileFragment()
+        fun newInstance() =
+            ProfileFragment()
     }
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewBinding: FragmentProfileBinding
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getUserProfileDetails("fOlmNZnpfP")
     }
 
     override fun getLayoutId(): Int {
@@ -38,10 +38,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     override fun getViewModel(): ProfileViewModel {
-        profileViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(ProfileViewModel::class.java)
-        return profileViewModel
+        viewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(ProfileViewModel::class.java)
+        return viewModel
     }
 
-    override fun initObservers() {
-    }
+    override fun initObservers() {}
 }
