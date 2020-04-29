@@ -1,6 +1,7 @@
 package com.example.liflow.presentation.ui.main
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -12,7 +13,8 @@ import com.example.liflow.presentation.ui.base.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(){
+
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var viewBinding: ActivityMainBinding
 
@@ -42,6 +44,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(){
         return mainViewModel
     }
 
-    override fun initObservers() {
-    }
+    override fun initObservers() {}
 }

@@ -13,7 +13,8 @@ class MockDatabase {
                 lastname = "Au",
                 description = "This is Mickael description",
                 age = 23,
-                totalClap =  300
+                totalClap =  300,
+                isMale = true
             ),
             User(
                 id = 2,
@@ -23,7 +24,8 @@ class MockDatabase {
                 lastname = "Doe",
                 description = "This is John description",
                 age = 32,
-                totalClap =  22
+                totalClap =  22,
+                isMale = true
             )
         )
 
@@ -55,20 +57,20 @@ class MockDatabase {
             Post(
                 id = 1,
                 authorId = 1,
-                title = "This is a title",
+                title = "How to improve your relation",
                 description = "This is a description",
                 solution = "This is a solution",
-                url = null,
+                url = "https://picsum.photos/200",
                 category = "COUPLE"
             ),
             Post(
                 id = 1,
                 authorId = 2,
-                title = "This is a title",
+                title = "How to be a better friend",
                 description = "This is a description",
                 solution = "This is a solution",
-                url = null,
-                category = "COUPLE"
+                url = "https://picsum.photos/200",
+                category = "FRIENDSHIP"
             )
         )
 

@@ -203,9 +203,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_profile_layout_likedPosts"
-            android:layout_width="409dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:onClick="@{() -> viewModel.onClickSwitchToLikedPostsFragment()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_textView_description">
@@ -254,9 +255,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_profile_layout_writtenPosts"
-            android:layout_width="409dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:onClick="@{() -> viewModel.onClickSwitchToWrittenPostsFragment()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_view_separator">

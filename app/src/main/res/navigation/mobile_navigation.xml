@@ -28,7 +28,20 @@
             tools:layout="@layout/fragment_like" />
         <fragment
             android:id="@+id/navigation_profile"
-            android:name="com.example.liflow.presentation.ui.profile.ProfileFragment"
+            android:name="com.example.liflow.presentation.ui.profile.fragment.ProfileFragment"
             android:label="@string/title_profile"
-            tools:layout="@layout/fragment_profile" />
+            tools:layout="@layout/fragment_profile" >
+                <action
+                    android:id="@+id/action_navigation_profile_to_navigation_profile_post"
+                    app:destination="@id/navigation_profile_post" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_profile_post"
+            android:name="com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragment"
+            android:label="@string/title_profile_post" >
+                <argument
+                    android:name="isLikedPostsCategory"
+                    app:argType="boolean" />
+        </fragment>
+
 </navigation>

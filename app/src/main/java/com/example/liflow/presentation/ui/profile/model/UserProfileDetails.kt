@@ -14,14 +14,14 @@ class UserProfileDetails(
     val totalPostWritten: String
 ) {
     companion object {
-        private fun getPostPlural(postNb: Int): String {
+        private fun adaptTextWhenPlural(postNb: Int): String {
             return if (postNb > 1) "posts" else "post"
         }
 
         fun map(responseData: GetUserProfileDetails.Response): UserProfileDetails {
             val gender = if (responseData.isMale) "Male" else "Female"
-            val totalPostLiked = "${responseData.totalPostLiked} ${getPostPlural(responseData.totalPostLiked)} liked"
-            val totalPostWritten = "${responseData.totalPostWritten} ${getPostPlural(responseData.totalPostWritten)} written"
+            val totalPostLiked = "${responseData.totalPostLiked} ${adaptTextWhenPlural(responseData.totalPostLiked)} liked"
+            val totalPostWritten = "${responseData.totalPostWritten} ${adaptTextWhenPlural(responseData.totalPostWritten)} written"
 
             return UserProfileDetails(
                 fullname = "${responseData.lastname} ${responseData.firstname}",

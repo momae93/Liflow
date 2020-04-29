@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.liflow.domain.user.UserDomain
 import com.example.liflow.presentation.ui.login.LoginViewModel
 import com.example.liflow.presentation.ui.main.MainViewModel
-import com.example.liflow.presentation.ui.profile.ProfileViewModel
+import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
+import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,7 +28,10 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
                 MainViewModel(userDomain) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel() as T
+                ProfileViewModel(userDomain) as T
+            }
+            modelClass.isAssignableFrom(ProfilePostViewModel::class.java) -> {
+                ProfilePostViewModel(userDomain) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -10,20 +10,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.liflow.R
-import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 
-abstract class BaseFragment<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: BaseViewModel>: Fragment() {
-    private lateinit var viewBinding: VIEW_DATA_BINDING
-    private lateinit var viewModel: VIEW_MODEL
+abstract class BaseFragment<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: BaseViewModel<NAVIGATOR>, NAVIGATOR: IBaseNavigator>: Fragment() {
+    private lateinit var baseViewBinding: VIEW_DATA_BINDING
+    private lateinit var baseViewModel: VIEW_MODEL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()
         super.onCreate(savedInstanceState)
+        baseViewModel = getViewModel()
+        baseViewModel.setNavigator(getNavigator())
     }
 
     override fun onCreateView(
@@ -31,11 +28,10 @@ abstract class BaseFragment<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: Base
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =  getViewModel()
-        viewBinding = performViewBinding(layoutInflater, container)
+        baseViewBinding = performViewBinding(layoutInflater, container)
         initInternalObservers()
         initObservers()
-        return viewBinding.root
+        return baseViewBinding.root
     }
 
     @LayoutRes
@@ -45,18 +41,20 @@ abstract class BaseFragment<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: Base
 
     abstract fun getViewModel(): VIEW_MODEL
 
-    abstract fun initObservers()
+    abstract fun getNavigator(): NAVIGATOR
 
-    fun getViewBinding(): ViewDataBinding = viewBinding
+    fun getViewBinding(): ViewDataBinding = baseViewBinding
+
+    open fun initObservers() {}
 
     open fun observeOnLoad() {
-        viewModel.isLoading.observe(this, Observer {
+        baseViewModel.isLoading.observe(this, Observer {
             Toast.makeText(context, "Loading ...", Toast.LENGTH_SHORT).show()
         })
     }
 
     open fun observeOnError() {
-        viewModel.errorHandler.observe(this, Observer {
+        baseViewModel.errorHandler.observe(this, Observer {
             Toast.makeText(context, "Oops an error occurred ...", Toast.LENGTH_SHORT).show()
         })
     }
@@ -73,7 +71,7 @@ abstract class BaseFragment<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: Base
     private fun performViewBinding(layoutInflater: LayoutInflater, viewGroup: ViewGroup?): VIEW_DATA_BINDING {
         val viewBinding: VIEW_DATA_BINDING = DataBindingUtil.inflate(layoutInflater, getLayoutId(), viewGroup, false)
         viewBinding.lifecycleOwner = this.viewLifecycleOwner
-        viewBinding.setVariable(getViewModelBindingVariable(), viewModel)
+        viewBinding.setVariable(getViewModelBindingVariable(), baseViewModel)
         viewBinding.executePendingBindings()
 
         return viewBinding

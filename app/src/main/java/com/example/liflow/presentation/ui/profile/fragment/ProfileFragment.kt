@@ -2,8 +2,8 @@ package com.example.liflow.presentation.ui.profile.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.example.liflow.BR
 import com.example.liflow.R
 import com.example.liflow.databinding.FragmentProfileBinding
@@ -12,17 +12,11 @@ import com.example.liflow.presentation.ui.base.BaseFragment
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
 import javax.inject.Inject
 
-class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
-    companion object {
-        fun newInstance() =
-            ProfileFragment()
-    }
-
+class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel, IProfileNavigator>(), IProfileNavigator {
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
     private lateinit var viewModel: ProfileViewModel
-    private lateinit var viewBinding: FragmentProfileBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,5 +36,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         return viewModel
     }
 
-    override fun initObservers() {}
+    override fun navigateToPostFragment(isLikedPostsCategory: Boolean) {
+        val action = ProfileFragmentDirections
+            .actionNavigationProfileToNavigationProfilePost(isLikedPostsCategory)
+        findNavController().navigate(action)
+    }
+
+    override fun getNavigator(): IProfileNavigator = this
 }
