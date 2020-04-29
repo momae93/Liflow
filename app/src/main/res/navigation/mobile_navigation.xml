@@ -17,7 +17,7 @@
 
         <fragment
             android:id="@+id/navigation_new"
-            android:name="com.example.liflow.presentation.ui.newPost.NewPostFragment"
+            android:name="com.example.liflow.presentation.ui.post.fragment.NewPostFragment"
             android:label="@string/title_new"
             tools:layout="@layout/fragment_new_post" />
 

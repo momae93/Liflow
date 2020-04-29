@@ -1,4 +1,4 @@
-package com.example.liflow.presentation.ui.newPost
+package com.example.liflow.presentation.ui.post.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.example.liflow.presentation.ui.newPost
+package com.example.liflow.presentation.ui.post.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.liflow.R
+import com.example.liflow.presentation.ui.post.viewmodel.NewPostViewModel
 
 class NewPostFragment : Fragment() {
 
