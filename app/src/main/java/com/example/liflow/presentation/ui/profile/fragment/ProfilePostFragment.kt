@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.liflow.BR
@@ -18,7 +20,10 @@ import com.example.liflow.presentation.ui.profile.adapter.PostRecyclerAdapter
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
 import javax.inject.Inject
 
-class ProfilePostFragment : BaseFragment<FragmentProfilePostBinding, ProfilePostViewModel, IProfilePostNavigator>(), IProfilePostNavigator {
+class ProfilePostFragment :
+    BaseFragment<FragmentProfilePostBinding, ProfilePostViewModel, IProfilePostNavigator>(),
+    IProfilePostNavigator,
+    PostRecyclerAdapter.OnPostListener {
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
@@ -64,6 +69,16 @@ class ProfilePostFragment : BaseFragment<FragmentProfilePostBinding, ProfilePost
 
     override fun getNavigator(): IProfilePostNavigator = this
 
+    override fun navigateToPostFragment(postId: Int) {
+        val action = ProfilePostFragmentDirections
+            .actionNavigationProfilePostToNavigationPostDetails(postId)
+        findNavController().navigate(action)
+    }
+
+    override fun onPostThumbnailClick(postId: Int) {
+        getNavigator().navigateToPostFragment(postId)
+    }
+
     override fun initObservers() {
         super.initObservers()
         observeGetLikedPosts()
@@ -72,7 +87,7 @@ class ProfilePostFragment : BaseFragment<FragmentProfilePostBinding, ProfilePost
     private fun observeGetLikedPosts() {
         viewModel.posts.observe(this, Observer { lists ->
             viewBinding.fragmentProfilePostRecylerViewPost.layoutManager = LinearLayoutManager(context)
-            viewBinding.fragmentProfilePostRecylerViewPost.adapter = PostRecyclerAdapter(lists)
+            viewBinding.fragmentProfilePostRecylerViewPost.adapter = PostRecyclerAdapter(lists, this)
         })
     }
 }

@@ -64,7 +64,7 @@ class MockDatabase {
                 category = "COUPLE"
             ),
             Post(
-                id = 1,
+                id = 2,
                 authorId = 2,
                 title = "How to be a better friend",
                 description = "This is a description",
