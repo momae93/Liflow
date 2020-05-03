@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
@@ -72,7 +73,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="Mickael AU"
+                android:text="@{viewModel.postDetails.fullname}"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_big"
                 app:layout_constraintStart_toEndOf="@+id/fragment_post_details_imageView_user"
@@ -85,7 +86,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
-                android:text="Male"
+                android:text="@{viewModel.postDetails.gender}"
                 android:fontFamily="@font/lato"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_caption"
@@ -99,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
-                android:text="22 y.o"
+                android:text="@{viewModel.postDetails.age}"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_caption"
                 app:layout_constraintBottom_toBottomOf="@+id/fragment_post_details_textView_gender"
@@ -115,7 +116,8 @@
                 android:layout_marginRight="16dp"
                 android:background="@null"
                 android:src="@drawable/ic_heart_filled"
-                android:tint="@color/colorWhite"
+                android:tint="@{viewModel.isLiked == true ? @color/colorRedHeart : @color/colorWhite}"
+                android:onClick="@{() -> viewModel.onClickLikePost()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -128,7 +130,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lato_bold"
-            android:text='"Had a fight with my girlfriend"'
+            android:text="@{viewModel.postDetails.title}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_big"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +164,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:text="Yesterday I came back from work, I forget that it was our anniversary. I farted, then she started to cry and yell at me."
+            android:text="@{viewModel.postDetails.reason}"
             android:fontFamily="@font/lato"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_regular"
@@ -198,7 +200,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:text="I brought her flower the next day so that she can forgive me"
+            android:text="@{viewModel.postDetails.description}"
             android:fontFamily="@font/lato"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_regular"
@@ -208,20 +210,29 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_post_details_textView_solution_title" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/fragment_post_details_floatingButton_clap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
+            android:backgroundTint="@{viewModel.totalClaps != viewModel.postDetails.totalClap ? @color/colorGreenMint : @color/colorGrey}"
             android:clickable="true"
-            android:tint="@color/colorGrey"
-            android:backgroundTint="@color/colorWhite"
+            android:onClick="@{() -> viewModel.onClickAddClap()}"
+            android:src="@drawable/ic_clap"
+            android:tint="@color/colorWhite"
+            app:borderWidth="0dp"
             app:elevation="0dp"
-            app:backgroundTint="@color/colorGrey"
-            app:borderWidth="1dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_post_details_textView_solution_content"
-            android:src="@drawable/ic_clap" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_post_details_textView_solution_content" />
+
+        <TextView
+            android:id="@+id/fragment_post_details_textView_clapNb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.totalClaps.toString()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_post_details_floatingButton_clap"
+            app:layout_constraintStart_toStartOf="@+id/fragment_post_details_floatingButton_clap" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

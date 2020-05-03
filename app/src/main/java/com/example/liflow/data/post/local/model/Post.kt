@@ -1,4 +1,4 @@
-package com.example.liflow.data.user.local.model
+package com.example.liflow.data.post.local.model
 
 data class Post(
     val id: Int,

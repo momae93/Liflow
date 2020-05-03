@@ -1,6 +1,7 @@
 package com.example.liflow.data.user
 
-import com.example.liflow.data.user.local.MockDatabase
+import com.example.liflow.data.post.local.MockPostDatabase
+import com.example.liflow.data.user.local.MockUserDatabase
 import com.example.liflow.domain.user.IUserRepository
 import com.example.liflow.domain.user.usecases.GetUserLikedPosts
 import com.example.liflow.domain.user.usecases.GetUserProfileDetails
@@ -13,19 +14,19 @@ class UserRepository @Inject constructor() : IUserRepository {
     private val LOREM_IPSUM_IMAGE = "https://picsum.photos/200"
 
     override fun getUserSession(params: GetUserSession.Params): Observable<String> {
-        val user = MockDatabase.mockUserData.find { it.password == params.password && it.username == params.username }
+        val user = MockUserDatabase.mockUserData.find { it.password == params.password && it.username == params.username }
             ?: return Observable.error(Throwable("User does not exists"))
 
-        val sessionToken = MockDatabase.mockUserSession.find { it.userId == user.id }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.userId == user.id }
             ?: return Observable.error(Throwable("Token does not exists"))
 
         return Observable.just(sessionToken.token)
     }
 
     override fun getUserProfileDetails(params: GetUserProfileDetails.Params): Observable<GetUserProfileDetails.Response> {
-        val sessionToken = MockDatabase.mockUserSession.find { it.token == params.sessionToken }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == params.sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
-        val user = MockDatabase.mockUserData.find { it.id == sessionToken.userId }
+        val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
             ?: return Observable.error(Throwable("User does not exists"))
 
         val userProfileDetails = GetUserProfileDetails.Response(
@@ -35,26 +36,26 @@ class UserRepository @Inject constructor() : IUserRepository {
             isMale = user.isMale,
             totalClap = user.totalClap,
             description = user.description,
-            totalFollower = MockDatabase.mockFollowingUser.filter { it.followingUserId == user.id }.count(),
-            totalFollowing = MockDatabase.mockFollowingUser.filter { it.userId == user.id }.count(),
-            totalPostLiked = MockDatabase.mockLikedPost.filter{ it.userId == user.id }.count(),
-            totalPostWritten = MockDatabase.mockPostData.filter { it.authorId == user.id }.count()
+            totalFollower = MockUserDatabase.mockFollowingUser.filter { it.followingUserId == user.id }.count(),
+            totalFollowing = MockUserDatabase.mockFollowingUser.filter { it.userId == user.id }.count(),
+            totalPostLiked = MockPostDatabase.mockLikedPost.filter{ it.userId == user.id }.count(),
+            totalPostWritten = MockPostDatabase.mockPostData.filter { it.authorId == user.id }.count()
         )
 
         return Observable.just(userProfileDetails)
     }
 
     override fun getUserLikedPosts(params: GetUserLikedPosts.Params): Observable<GetUserLikedPosts.Response> {
-        val sessionToken = MockDatabase.mockUserSession.find { it.token == params.sessionToken }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == params.sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
-        val user = MockDatabase.mockUserData.find { it.id == sessionToken.userId }
+        val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
             ?: return Observable.error(Throwable("User does not exists"))
 
-        val likedPostIds = MockDatabase.mockLikedPost
+        val likedPostIds = MockPostDatabase.mockLikedPost
             .filter { it.userId == user.id }
             .map { it.postId }
 
-        val likedPosts = MockDatabase
+        val likedPosts = MockPostDatabase
             .mockPostData
             .filter { likedPostIds.contains(it.id) }
             .map {
@@ -74,12 +75,12 @@ class UserRepository @Inject constructor() : IUserRepository {
     }
 
     override fun getUserWrittenPosts(params: GetUserWrittenPosts.Params): Observable<GetUserWrittenPosts.Response> {
-        val sessionToken = MockDatabase.mockUserSession.find { it.token == params.sessionToken }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == params.sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
-        val user = MockDatabase.mockUserData.find { it.id == sessionToken.userId }
+        val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
             ?: return Observable.error(Throwable("User does not exists"))
 
-        val writtenPosts = MockDatabase
+        val writtenPosts = MockPostDatabase
             .mockPostData
             .filter { it.authorId == user.id }
             .map {

@@ -2,7 +2,7 @@ package com.example.liflow.data.user.local
 
 import com.example.liflow.data.user.local.model.*
 
-class MockDatabase {
+class MockUserDatabase {
     companion object {
         val mockUserData = listOf(
             User(
@@ -50,34 +50,6 @@ class MockDatabase {
             FollowingUser(
                 userId = 2,
                 followingUserId = 1
-            )
-        )
-
-        val mockPostData = listOf(
-            Post(
-                id = 1,
-                authorId = 1,
-                title = "How to improve your relation",
-                description = "This is a description",
-                solution = "This is a solution",
-                url = "https://picsum.photos/200",
-                category = "COUPLE"
-            ),
-            Post(
-                id = 2,
-                authorId = 2,
-                title = "How to be a better friend",
-                description = "This is a description",
-                solution = "This is a solution",
-                url = "https://picsum.photos/200",
-                category = "FRIENDSHIP"
-            )
-        )
-
-        val mockLikedPost = listOf(
-            LikedPost(
-                userId = 1,
-                postId = 1
             )
         )
     }

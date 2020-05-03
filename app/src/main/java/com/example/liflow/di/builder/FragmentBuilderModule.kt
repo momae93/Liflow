@@ -1,5 +1,6 @@
 package com.example.liflow.di.builder
 
+import com.example.liflow.presentation.ui.post.fragment.PostDetailsFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfileFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragment
 import dagger.Module
@@ -12,4 +13,7 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun bindProfilePostFragment(): ProfilePostFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindPostDetailsFragment(): PostDetailsFragment
 }

@@ -2,9 +2,11 @@ package com.example.liflow.presentation.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.liflow.domain.post.PostDomain
 import com.example.liflow.domain.user.UserDomain
 import com.example.liflow.presentation.ui.login.LoginViewModel
 import com.example.liflow.presentation.ui.main.MainViewModel
+import com.example.liflow.presentation.ui.post.viewmodel.PostDetailsViewModel
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
 import javax.inject.Inject
@@ -13,10 +15,12 @@ import javax.inject.Singleton
 @Singleton
 class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
     private var userDomain: UserDomain
+    private var postDomain: PostDomain
 
     @Inject
-    constructor(userDomain: UserDomain) {
+    constructor(userDomain: UserDomain, postDomain: PostDomain) {
         this.userDomain = userDomain
+        this.postDomain = postDomain
     }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -32,6 +36,9 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
             }
             modelClass.isAssignableFrom(ProfilePostViewModel::class.java) -> {
                 ProfilePostViewModel(userDomain) as T
+            }
+            modelClass.isAssignableFrom(PostDetailsViewModel::class.java) -> {
+                PostDetailsViewModel(postDomain) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
