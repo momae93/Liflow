@@ -1,6 +1,5 @@
 package com.example.liflow.presentation.ui.post.model
 
-import com.example.liflow.R
 import com.example.liflow.domain.post.usecases.GetPostDetails
 import com.example.liflow.domain.post.usecases.PostClapsPost
 import com.example.liflow.domain.post.usecases.PostLikePost

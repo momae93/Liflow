@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_world">
+    app:startDestination="@+id/navigation_daily_post">
         <fragment
-            android:id="@+id/navigation_world"
-            android:name="com.example.liflow.presentation.ui.world.WorldFragment"
-            android:label="@string/title_world"
-            tools:layout="@layout/fragment_world" />
+            android:id="@+id/navigation_daily_post"
+            android:name="com.example.liflow.presentation.ui.post.fragment.DailyPostFragment"
+            android:label="@string/title_daily_post"
+            tools:layout="@layout/fragment_daily_post" >
+                <action
+                    android:id="@+id/action_navigation_daily_post_to_navigation_post_details"
+                    app:destination="@id/navigation_post_details" />
+        </fragment>
         <fragment
             android:id="@+id/navigation_search"
             android:name="com.example.liflow.presentation.ui.search.SearchFragment"

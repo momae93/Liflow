@@ -10,6 +10,7 @@ import com.example.liflow.domain.post.usecases.PostLikePost
 import com.example.liflow.presentation.models.EErrorType
 import com.example.liflow.presentation.models.ErrorHandler
 import com.example.liflow.presentation.ui.base.BaseViewModel
+import com.example.liflow.presentation.ui.post.fragment.IPostDetailsNavigator
 import com.example.liflow.presentation.ui.post.model.PostDetails
 import javax.inject.Inject
 

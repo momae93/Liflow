@@ -2,26 +2,14 @@ package com.example.liflow.presentation.ui.post.fragment
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.liflow.BR
 
 import com.example.liflow.R
 import com.example.liflow.databinding.FragmentPostDetailsBinding
-import com.example.liflow.databinding.FragmentProfilePostBinding
 import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseFragment
-import com.example.liflow.presentation.ui.post.model.PostDetails
-import com.example.liflow.presentation.ui.post.viewmodel.IPostDetailsNavigator
 import com.example.liflow.presentation.ui.post.viewmodel.PostDetailsViewModel
-import com.example.liflow.presentation.ui.profile.adapter.PostRecyclerAdapter
-import com.example.liflow.presentation.ui.profile.fragment.IProfilePostNavigator
-import com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragmentArgs
-import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
 import javax.inject.Inject
 
 class PostDetailsFragment :

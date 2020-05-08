@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_world"
+        android:id="@+id/navigation_daily_post"
         android:icon="@drawable/ic_world"
-        android:title="@string/title_world" />
+        android:title="@string/title_daily_post" />
 
     <item
         android:id="@+id/navigation_search"
