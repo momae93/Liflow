@@ -20,7 +20,6 @@ class GetUserWrittenPosts:
     }
 
     class Params constructor(
-        val sessionToken: String
     )
 
     class Response constructor(

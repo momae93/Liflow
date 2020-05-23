@@ -19,9 +19,7 @@ class PostClapsPost: AbstractUseCase<PostClapsPost.Response, PostClapsPost.Param
     }
 
     class Params constructor(
-        val sessionToken: String,
-        val postId: Int,
-        val clapNbs: Int
+        val postId: Int
     )
     class Response constructor(
         val postId: Int,
@@ -33,7 +31,6 @@ class PostClapsPost: AbstractUseCase<PostClapsPost.Response, PostClapsPost.Param
         val title: String,
         val reason: String,
         val description: String,
-        val totalClap: Int,
-        val alreadyLiked: Boolean
+        val totalClap: Int
     )
 }

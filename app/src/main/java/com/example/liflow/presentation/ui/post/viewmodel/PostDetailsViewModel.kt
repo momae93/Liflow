@@ -13,6 +13,7 @@ import com.example.liflow.presentation.ui.base.BaseViewModel
 import com.example.liflow.presentation.ui.post.fragment.IPostDetailsNavigator
 import com.example.liflow.presentation.ui.post.model.PostDetails
 import javax.inject.Inject
+import javax.inject.Named
 
 class PostDetailsViewModel : BaseViewModel<IPostDetailsNavigator> {
     private var postDomain: PostDomain
@@ -31,9 +32,9 @@ class PostDetailsViewModel : BaseViewModel<IPostDetailsNavigator> {
         this.postDomain = postDomain
     }
 
-    fun getPostDetails(sessionToken: String, postId: Int) {
+    fun getPostDetails(postId: Int) {
         _isLoading.value = true
-        postDomain.getPostDetails(GetPostDetailsObserver(), GetPostDetails.Params(sessionToken, postId))
+        postDomain.getPostDetails(GetPostDetailsObserver(), GetPostDetails.Params(postId))
     }
 
     fun onClickLikePost () {
@@ -42,7 +43,7 @@ class PostDetailsViewModel : BaseViewModel<IPostDetailsNavigator> {
             _isLiked.value = newIsLiked
             postDetails.value?.let {
                 postDomain
-                    .postLikePost(PostLikePostObserver(), PostLikePost.Params("fOlmNZnpfP", it.postId, newIsLiked))
+                    .postLikePost(PostLikePostObserver(), PostLikePost.Params(it.postId, newIsLiked))
             }
         }
     }
@@ -54,7 +55,7 @@ class PostDetailsViewModel : BaseViewModel<IPostDetailsNavigator> {
 
             postDetails.value?.let {
                 postDomain
-                    .postClapsPost(PostClapsPostObserver(), PostClapsPost.Params("fOlmNZnpfP", it.postId, newClapNb))
+                    .postClapsPost(PostClapsPostObserver(), PostClapsPost.Params(it.postId))
             }
         }
     }

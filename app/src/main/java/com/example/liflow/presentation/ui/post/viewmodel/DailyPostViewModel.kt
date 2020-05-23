@@ -23,9 +23,9 @@ class DailyPostViewModel : BaseViewModel<IDailyPostNavigator> {
         this.postDomain = postDomain
     }
 
-    fun getRandomDailyPost(sessionToken: String) {
+    fun getRandomDailyPost() {
         _isLoading.value = true
-        postDomain.getRandomDailyPost(GetRandomDailyPostObserver(), GetRandomDailyPost.Params(sessionToken))
+        postDomain.getRandomDailyPost(GetRandomDailyPostObserver(), GetRandomDailyPost.Params())
     }
 
     private inner class GetRandomDailyPostObserver : AbstractObserver<GetRandomDailyPost.Response>() {

@@ -31,14 +31,14 @@ class ProfilePostViewModel : BaseViewModel<IProfilePostNavigator> {
         _titleMutableLiveData.value = if (isLikedPostsCategory) "Posts liked" else "Posts written"
     }
 
-    fun getUserLikedPosts(sessionToken: String) {
+    fun getUserLikedPosts() {
         _isLoading.value = true
-        userDomain.getUserLikedPosts(GetUserLikedPostsObserver(), GetUserLikedPosts.Params(sessionToken))
+        userDomain.getUserLikedPosts(GetUserLikedPostsObserver(), GetUserLikedPosts.Params())
     }
 
-    fun getUserWrittenPosts(sessionToken: String) {
+    fun getUserWrittenPosts() {
         _isLoading.value = true
-        userDomain.getUserWrittenPosts(GetUserWrittenPostsObserver(), GetUserWrittenPosts.Params(sessionToken))
+        userDomain.getUserWrittenPosts(GetUserWrittenPostsObserver(), GetUserWrittenPosts.Params())
     }
 
     private inner class GetUserLikedPostsObserver : AbstractObserver<GetUserLikedPosts.Response>() {

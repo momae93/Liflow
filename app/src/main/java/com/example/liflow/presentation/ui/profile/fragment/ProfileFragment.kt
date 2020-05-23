@@ -11,6 +11,7 @@ import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseFragment
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
 import javax.inject.Inject
+import javax.inject.Named
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel, IProfileNavigator>(), IProfileNavigator {
     @Inject
@@ -20,7 +21,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel, I
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserProfileDetails("fOlmNZnpfP")
+        viewModel.getUserProfileDetails()
     }
 
     override fun getLayoutId(): Int {

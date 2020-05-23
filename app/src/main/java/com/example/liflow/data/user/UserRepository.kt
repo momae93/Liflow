@@ -9,8 +9,13 @@ import com.example.liflow.domain.user.usecases.GetUserSession
 import com.example.liflow.domain.user.usecases.GetUserWrittenPosts
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
+import javax.inject.Named
 
 class UserRepository @Inject constructor() : IUserRepository {
+    @Inject
+    @Named("sessionToken")
+    lateinit var sessionToken: String
+
     private val LOREM_IPSUM_IMAGE = "https://picsum.photos/200"
 
     override fun getUserSession(params: GetUserSession.Params): Observable<String> {
@@ -24,7 +29,7 @@ class UserRepository @Inject constructor() : IUserRepository {
     }
 
     override fun getUserProfileDetails(params: GetUserProfileDetails.Params): Observable<GetUserProfileDetails.Response> {
-        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == params.sessionToken }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
         val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
             ?: return Observable.error(Throwable("User does not exists"))
@@ -46,7 +51,7 @@ class UserRepository @Inject constructor() : IUserRepository {
     }
 
     override fun getUserLikedPosts(params: GetUserLikedPosts.Params): Observable<GetUserLikedPosts.Response> {
-        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == params.sessionToken }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
         val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
             ?: return Observable.error(Throwable("User does not exists"))
@@ -75,7 +80,7 @@ class UserRepository @Inject constructor() : IUserRepository {
     }
 
     override fun getUserWrittenPosts(params: GetUserWrittenPosts.Params): Observable<GetUserWrittenPosts.Response> {
-        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == params.sessionToken }
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
         val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
             ?: return Observable.error(Throwable("User does not exists"))

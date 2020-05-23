@@ -1,6 +1,5 @@
 package com.example.liflow.presentation
 
-import android.app.Activity
 import android.app.Application
 import com.example.liflow.di.components.ApplicationComponent
 import com.example.liflow.di.components.DaggerApplicationComponent
@@ -10,8 +9,6 @@ import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 class AndroidApplication: Application(), HasAndroidInjector {
-    private lateinit var applicationComponent: ApplicationComponent
-
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Any>
 
@@ -22,15 +19,11 @@ class AndroidApplication: Application(), HasAndroidInjector {
     }
 
     private fun initializeInjector() {
-         applicationComponent = DaggerApplicationComponent
+          DaggerApplicationComponent
             .builder()
+            .application(this)
             .build()
-
-        applicationComponent.inject(this)
-    }
-
-    fun getApplicationComponent(): ApplicationComponent {
-        return this.applicationComponent
+            .inject(this)
     }
 
     override fun androidInjector(): AndroidInjector<Any> {

@@ -19,7 +19,6 @@ class GetUserProfileDetails: AbstractUseCase<GetUserProfileDetails.Response, Get
     }
 
     class Params constructor(
-        val sessionToken: String
     )
     class Response constructor(
         val firstname: String,

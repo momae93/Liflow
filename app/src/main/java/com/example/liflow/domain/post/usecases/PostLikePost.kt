@@ -19,7 +19,6 @@ class PostLikePost: AbstractUseCase<PostLikePost.Response, PostLikePost.Params> 
     }
 
     class Params constructor(
-        val sessionToken: String,
         val postId: Int,
         val isPostLiked: Boolean
     )
@@ -33,7 +32,6 @@ class PostLikePost: AbstractUseCase<PostLikePost.Response, PostLikePost.Params> 
         val title: String,
         val reason: String,
         val description: String,
-        val totalClap: Int,
-        val alreadyLiked: Boolean
+        val totalClap: Int
     )
 }

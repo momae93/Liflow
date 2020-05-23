@@ -19,7 +19,6 @@ class GetRandomDailyPost: AbstractUseCase<GetRandomDailyPost.Response, GetRandom
     }
 
     class Params constructor(
-        val sessionToken: String
     )
 
     class Response constructor(

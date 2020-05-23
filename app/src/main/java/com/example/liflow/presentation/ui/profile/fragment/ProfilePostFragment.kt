@@ -19,6 +19,7 @@ import com.example.liflow.presentation.ui.base.BaseFragment
 import com.example.liflow.presentation.ui.profile.adapter.PostRecyclerAdapter
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
 import javax.inject.Inject
+import javax.inject.Named
 
 class ProfilePostFragment :
     BaseFragment<FragmentProfilePostBinding, ProfilePostViewModel, IProfilePostNavigator>(),
@@ -26,6 +27,7 @@ class ProfilePostFragment :
     PostRecyclerAdapter.OnPostListener {
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
+
 
     private lateinit var viewModel: ProfilePostViewModel
     private lateinit var viewBinding: FragmentProfilePostBinding
@@ -45,10 +47,10 @@ class ProfilePostFragment :
         isLikedPostCategory?.let {
             viewModel.setTitle(it)
             if (it) {
-                viewModel.getUserLikedPosts("fOlmNZnpfP")
+                viewModel.getUserLikedPosts()
             }
             else {
-                viewModel.getUserWrittenPosts("fOlmNZnpfP")
+                viewModel.getUserWrittenPosts()
             }
         }
     }

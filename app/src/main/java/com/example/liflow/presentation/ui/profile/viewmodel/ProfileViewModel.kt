@@ -27,9 +27,9 @@ class ProfileViewModel: BaseViewModel<IProfileNavigator> {
 
     fun onClickSwitchToWrittenPostsFragment () { getNavigator()?.navigateToPostFragment(isLikedPostsCategory = false) }
 
-    fun getUserProfileDetails(sessionToken: String) {
+    fun getUserProfileDetails() {
         _isLoading.value = true
-        userDomain.getUserProfileDetails(GetProfileDetailsObserver(), GetUserProfileDetails.Params(sessionToken))
+        userDomain.getUserProfileDetails(GetProfileDetailsObserver(), GetUserProfileDetails.Params())
     }
 
     private inner class GetProfileDetailsObserver : AbstractObserver<GetUserProfileDetails.Response>() {

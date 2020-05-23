@@ -19,7 +19,6 @@ class GetPostDetails: AbstractUseCase<GetPostDetails.Response, GetPostDetails.Pa
     }
 
     class Params constructor(
-        val sessionToken: String,
         val postId: Int
     )
     class Response constructor(

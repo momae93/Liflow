@@ -20,7 +20,6 @@ class GetUserLikedPosts:
     }
 
     class Params constructor(
-        val sessionToken: String
     )
 
     class Response constructor(

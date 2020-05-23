@@ -11,6 +11,7 @@ import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseFragment
 import com.example.liflow.presentation.ui.post.viewmodel.PostDetailsViewModel
 import javax.inject.Inject
+import javax.inject.Named
 
 class PostDetailsFragment :
     BaseFragment<FragmentPostDetailsBinding, PostDetailsViewModel, IPostDetailsNavigator>(),
@@ -35,7 +36,7 @@ class PostDetailsFragment :
         super.onViewCreated(view, savedInstanceState)
         viewBinding = getViewBinding() as FragmentPostDetailsBinding
         postId?.let {
-            viewModel.getPostDetails("fOlmNZnpfP", it)
+            viewModel.getPostDetails(it)
         }
     }
 

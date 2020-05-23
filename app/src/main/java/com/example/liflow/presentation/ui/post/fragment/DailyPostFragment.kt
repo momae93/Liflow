@@ -18,6 +18,7 @@ import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import javax.inject.Inject
+import javax.inject.Named
 
 class DailyPostFragment :
     BaseFragment<FragmentDailyPostBinding, DailyPostViewModel, IDailyPostNavigator>(),
@@ -36,7 +37,7 @@ class DailyPostFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = getViewBinding() as FragmentDailyPostBinding
-        viewModel.getRandomDailyPost("fOlmNZnpfP")
+        viewModel.getRandomDailyPost()
         viewBinding.fragmentDailyPostCardStackViewContainer.adapter = recyclerAdapter
         viewBinding.fragmentDailyPostCardStackViewContainer.layoutManager = manager
     }
@@ -65,7 +66,7 @@ class DailyPostFragment :
 
     override fun onCardSwiped(direction: Direction?) {
         if (manager.topPosition == recyclerAdapter.itemCount) {
-            viewModel.getRandomDailyPost("fOlmNZnpfP")
+            viewModel.getRandomDailyPost()
         }
     }
 
