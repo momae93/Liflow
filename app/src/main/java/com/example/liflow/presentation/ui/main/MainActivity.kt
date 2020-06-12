@@ -1,6 +1,9 @@
 package com.example.liflow.presentation.ui.main
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -12,6 +15,7 @@ import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
+import javax.inject.Named
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -20,6 +24,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
+
+    @Inject
+    @JvmField
+    @Named("sessionToken")
+    internal var sessionToken: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

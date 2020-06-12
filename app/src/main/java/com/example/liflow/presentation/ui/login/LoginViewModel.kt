@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.liflow.domain.AbstractObserver
+import com.example.liflow.domain.session.SessionDomain
+import com.example.liflow.domain.session.usecases.SetSessionToken
 import com.example.liflow.domain.user.UserDomain
 import com.example.liflow.domain.user.usecases.GetUserSession
 import com.example.liflow.presentation.models.State
@@ -11,6 +13,7 @@ import javax.inject.Inject
 
 class LoginViewModel: ViewModel {
     private var userDomain: UserDomain
+    private var sessionDomain: SessionDomain
     private var _loginStateLiveData: MutableLiveData<State<String>> = MutableLiveData()
     val loginStateLiveData: LiveData<State<String>> = _loginStateLiveData
 
@@ -18,8 +21,9 @@ class LoginViewModel: ViewModel {
     val password = MutableLiveData<String>()
 
     @Inject
-    constructor(userDomain: UserDomain) {
+    constructor(userDomain: UserDomain, sessionDomain: SessionDomain) {
         this.userDomain = userDomain
+        this.sessionDomain = sessionDomain
     }
 
     fun onClickLogin() {
@@ -32,6 +36,10 @@ class LoginViewModel: ViewModel {
         }
 
         login(currentUsername, currentPassword)
+    }
+
+    fun saveSessionTokenLocally(sessionToken: String) {
+        sessionDomain.setSessionToken(SetSessionTokenObserver(), SetSessionToken.Params(sessionToken))
     }
 
     private fun login(username: String, password: String) {
@@ -48,6 +56,16 @@ class LoginViewModel: ViewModel {
 
         override fun onNext(responseData: String) {
             _loginStateLiveData.value = State.success(responseData)
+        }
+    }
+
+    private inner class SetSessionTokenObserver : AbstractObserver<SetSessionToken.Response>() {
+        override fun onComplete() {}
+
+        override fun onError(e: Throwable) {
+        }
+
+        override fun onNext(responseData: SetSessionToken.Response) {
         }
     }
 }

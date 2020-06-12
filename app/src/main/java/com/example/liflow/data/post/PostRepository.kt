@@ -14,8 +14,9 @@ import javax.inject.Named
 
 class PostRepository @Inject constructor() : IPostRepository {
     @Inject
+    @JvmField
     @Named("sessionToken")
-    lateinit var sessionToken: String
+    internal var sessionToken: String? = null
 
     override fun getPostDetails(params: GetPostDetails.Params): Observable<GetPostDetails.Response> {
         val post = MockPostDatabase.mockPostData.find { it.id == params.postId } ?: return Observable.error(Throwable("Post does not exists"))

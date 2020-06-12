@@ -13,15 +13,13 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
-@Singleton
 @Component(modules = [
     AndroidInjectionModule::class,
     ApplicationModule::class,
     ActivityBuilderModule::class,
     FragmentBuilderModule::class,
-    DomainModule::class,
     RepositoryModule::class,
-    SessionModule::class
+    DomainModule::class
 ])
 interface ApplicationComponent {
     fun inject(application: AndroidApplication)

@@ -1,5 +1,6 @@
 package com.example.liflow.data.user
 
+import android.util.Log
 import com.example.liflow.data.post.local.MockPostDatabase
 import com.example.liflow.data.user.local.MockUserDatabase
 import com.example.liflow.domain.user.IUserRepository
@@ -13,8 +14,9 @@ import javax.inject.Named
 
 class UserRepository @Inject constructor() : IUserRepository {
     @Inject
+    @JvmField
     @Named("sessionToken")
-    lateinit var sessionToken: String
+    internal var sessionToken: String? = null
 
     private val LOREM_IPSUM_IMAGE = "https://picsum.photos/200"
 
@@ -29,6 +31,7 @@ class UserRepository @Inject constructor() : IUserRepository {
     }
 
     override fun getUserProfileDetails(params: GetUserProfileDetails.Params): Observable<GetUserProfileDetails.Response> {
+        Log.d("SESSION_TOKEN_REPO", sessionToken.hashCode().toString())
         val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
         val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }

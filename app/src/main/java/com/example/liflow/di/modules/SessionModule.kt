@@ -1,6 +1,6 @@
 package com.example.liflow.di.modules
 
-import android.content.SharedPreferences
+import com.example.liflow.domain.session.SessionDomain
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -9,14 +9,7 @@ import javax.inject.Named
 class SessionModule {
     @Provides
     @Named("sessionToken")
-    fun provideSessionTokenProvider(sharedPreferences: SharedPreferences): String {
-        val sessionTokenKey = "sessionToken"
-        val sessionToken = sharedPreferences.getString("sessionToken", null)
-
-        if (sessionToken == null) {
-            sharedPreferences.edit().putString(sessionTokenKey, "fOlmNZnpfP")
-            return "fOlmNZnpfP"
-        }
-        return sessionToken
+    fun provideSessionTokenProvider(sessionDomain: SessionDomain): String? {
+        return sessionDomain.getSessionToken().sessionToken
     }
 }

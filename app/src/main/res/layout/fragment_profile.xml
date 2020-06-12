@@ -65,6 +65,7 @@
             android:layout_marginRight="24dp"
             android:background="@null"
             android:src="@drawable/ic_settings"
+            android:onClick="@{() -> viewModel.onClickLogout()}"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_age"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

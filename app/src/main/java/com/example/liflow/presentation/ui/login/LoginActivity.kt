@@ -1,6 +1,7 @@
 package com.example.liflow.presentation.ui.login
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -23,6 +24,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = getViewBinding() as ActivityLoginBinding
@@ -40,10 +44,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
     override fun getViewModelBindingVariable(): Int {
         return BR.viewModel
     }
-
-    override fun navigateToMainActivity(sessionToken: String) {
+    override fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("SESSION_TOKEN", sessionToken)
         startActivity(intent)
         finish()
     }
@@ -56,7 +58,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
         loginViewModel.loginStateLiveData.observe(this, Observer { state ->
             when(state) {
                 is State.Loading -> Toast.makeText(this, "Loading ...", Toast.LENGTH_SHORT).show()
-                is State.Success -> navigateToMainActivity(state.data)
+                is State.Success -> {
+                    loginViewModel.saveSessionTokenLocally(state.data)
+                    navigateToMainActivity()
+                }
                 is State.Error -> Toast.makeText(this, state.message, Toast.LENGTH_SHORT).show()
             }
         })

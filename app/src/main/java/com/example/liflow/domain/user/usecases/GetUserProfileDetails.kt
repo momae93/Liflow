@@ -1,5 +1,6 @@
 package com.example.liflow.domain.user.usecases
 
+import com.example.liflow.di.scope.ActivityScope
 import com.example.liflow.domain.AbstractUseCase
 import com.example.liflow.domain.user.IUserRepository
 import com.example.liflow.presentation.models.SchedulerProvider

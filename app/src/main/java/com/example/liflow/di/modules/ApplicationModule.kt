@@ -3,6 +3,7 @@ package com.example.liflow.di.modules
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.liflow.di.scope.ActivityScope
 import com.example.liflow.presentation.models.SchedulerProvider
 import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import dagger.Module
