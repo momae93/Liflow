@@ -1,9 +1,10 @@
 package com.example.liflow.data.post.local
 
+import com.example.liflow.data.category.local.model.LikedCategory
+import com.example.liflow.data.category.local.model.Category
 import com.example.liflow.data.post.local.model.LikedPost
 import com.example.liflow.data.post.local.model.Post
 import com.example.liflow.data.post.local.model.PostDetails
-import com.example.liflow.data.user.local.model.*
 
 class MockPostDatabase {
     companion object {

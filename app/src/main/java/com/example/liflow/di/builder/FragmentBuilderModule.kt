@@ -5,6 +5,7 @@ import com.example.liflow.presentation.ui.post.fragment.DailyPostFragment
 import com.example.liflow.presentation.ui.post.fragment.PostDetailsFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfileFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragment
+import com.example.liflow.presentation.ui.search.fragment.SearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -25,4 +26,8 @@ abstract class FragmentBuilderModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun bindDailyPostFragment(): DailyPostFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun bindSearchFragmentt(): SearchFragment
 }

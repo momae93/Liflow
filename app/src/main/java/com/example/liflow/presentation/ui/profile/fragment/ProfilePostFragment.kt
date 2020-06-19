@@ -28,7 +28,6 @@ class ProfilePostFragment :
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
-
     private lateinit var viewModel: ProfilePostViewModel
     private lateinit var viewBinding: FragmentProfilePostBinding
     private var isLikedPostCategory: Boolean? = null

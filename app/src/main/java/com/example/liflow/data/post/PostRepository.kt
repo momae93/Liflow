@@ -1,5 +1,6 @@
 package com.example.liflow.data.post
 
+import com.example.liflow.data.category.local.model.LikedCategory
 import com.example.liflow.data.post.local.MockPostDatabase
 import com.example.liflow.data.post.local.model.LikedPost
 import com.example.liflow.data.user.local.MockUserDatabase

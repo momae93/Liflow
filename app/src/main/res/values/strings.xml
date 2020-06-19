@@ -26,4 +26,6 @@
     <string name="fragment_profile_stats_claps">Claps</string>
     <string name="fragment_profile_posts_liked">Liked</string>
     <string name="fragment_profile_posts_written">Written</string>
+    <string name="follow">Follow</string>
+    <string name="followed">Followed</string>
 </resources>

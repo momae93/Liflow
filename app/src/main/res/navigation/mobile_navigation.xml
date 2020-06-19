@@ -15,7 +15,7 @@
         </fragment>
         <fragment
             android:id="@+id/navigation_search"
-            android:name="com.example.liflow.presentation.ui.search.SearchFragment"
+            android:name="com.example.liflow.presentation.ui.search.fragment.SearchFragment"
             android:label="@string/title_search"
             tools:layout="@layout/fragment_search" />
 

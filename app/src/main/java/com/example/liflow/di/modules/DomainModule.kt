@@ -1,5 +1,7 @@
 package com.example.liflow.di.modules
 
+import com.example.liflow.domain.category.CategoryDomain
+import com.example.liflow.domain.category.ICategoryDomain
 import com.example.liflow.domain.post.IPostDomain
 import com.example.liflow.domain.post.PostDomain
 import com.example.liflow.domain.session.ISessionDomain
@@ -24,5 +26,10 @@ class DomainModule {
     @Provides
     fun provideSessionDomain(sessionDomain: SessionDomain): ISessionDomain {
         return sessionDomain
+    }
+
+    @Provides
+    fun provideCategoryDomain(categoryDomain: CategoryDomain): ICategoryDomain {
+        return categoryDomain
     }
 }

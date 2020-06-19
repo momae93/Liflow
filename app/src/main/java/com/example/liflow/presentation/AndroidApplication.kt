@@ -1,7 +1,6 @@
 package com.example.liflow.presentation
 
 import android.app.Application
-import com.example.liflow.di.components.ApplicationComponent
 import com.example.liflow.di.components.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

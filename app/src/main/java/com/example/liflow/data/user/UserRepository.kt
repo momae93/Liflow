@@ -4,10 +4,7 @@ import android.util.Log
 import com.example.liflow.data.post.local.MockPostDatabase
 import com.example.liflow.data.user.local.MockUserDatabase
 import com.example.liflow.domain.user.IUserRepository
-import com.example.liflow.domain.user.usecases.GetUserLikedPosts
-import com.example.liflow.domain.user.usecases.GetUserProfileDetails
-import com.example.liflow.domain.user.usecases.GetUserSession
-import com.example.liflow.domain.user.usecases.GetUserWrittenPosts
+import com.example.liflow.domain.user.usecases.*
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 import javax.inject.Named
@@ -103,6 +100,35 @@ class UserRepository @Inject constructor() : IUserRepository {
         return Observable.just(
             GetUserWrittenPosts.Response(
                 list = writtenPosts
+            )
+        )
+    }
+
+    override fun getSearchedUsers(params: GetSearchedUsers.Params): Observable<GetSearchedUsers.Response> {
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
+            ?: return Observable.error(Throwable("User token does not exists"))
+        val currentUser = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
+            ?: return Observable.error(Throwable("User does not exists"))
+        val filteredUsers = MockUserDatabase.mockUserData.filter {
+            it.firstname.toLowerCase().contains(params.searchPattern) || it.lastname.toLowerCase().contains(params.searchPattern)
+        }
+
+        val searchedUsers = filteredUsers.map { user ->
+            val alreadyLiked = MockUserDatabase.mockFollowingUser.find { it.followingUserId == currentUser.id} !== null
+            val totalPostPublished = MockPostDatabase.mockPostData.filter { it.authorId == user.id }.count()
+            GetSearchedUsers.User(
+                userId = user.id,
+                firstname = user.firstname,
+                lastname = user.lastname,
+                pictureUrl = null,
+                alreadyLiked = alreadyLiked,
+                totalPostPublished = totalPostPublished
+            )
+        }
+
+        return Observable.just(
+            GetSearchedUsers.Response(
+                list = searchedUsers
             )
         )
     }

@@ -1,9 +1,6 @@
 package com.example.liflow.domain.user
 
-import com.example.liflow.domain.user.usecases.GetUserLikedPosts
-import com.example.liflow.domain.user.usecases.GetUserProfileDetails
-import com.example.liflow.domain.user.usecases.GetUserSession
-import com.example.liflow.domain.user.usecases.GetUserWrittenPosts
+import com.example.liflow.domain.user.usecases.*
 import io.reactivex.rxjava3.observers.DisposableObserver
 
 interface IUserDomain {
@@ -11,4 +8,5 @@ interface IUserDomain {
     fun getUserProfileDetails(observer: DisposableObserver<GetUserProfileDetails.Response>, params: GetUserProfileDetails.Params)
     fun getUserLikedPosts(observer: DisposableObserver<GetUserLikedPosts.Response>, params: GetUserLikedPosts.Params)
     fun getUserWrittenPosts(observer: DisposableObserver<GetUserWrittenPosts.Response>, params: GetUserWrittenPosts.Params)
+    fun getSearchedUsers(observer: DisposableObserver<GetSearchedUsers.Response>, params: GetSearchedUsers.Params)
 }
