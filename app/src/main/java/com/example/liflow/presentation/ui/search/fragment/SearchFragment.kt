@@ -25,7 +25,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISearchNavigator>(),
     ISearchNavigator, SearchedCategoriesRecyclerAdapter.OnCategoryListener {
     @Inject
@@ -108,6 +107,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISea
     }
 
     override fun onCategoryClick(categoryId: Int) {
+        closeKeyBoard()
         navigateToCategoryDetails(categoryId)
     }
 }

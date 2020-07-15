@@ -1,9 +1,11 @@
 package com.example.liflow.presentation.ui.base
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -57,6 +59,13 @@ abstract class BaseFragment<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: Base
         baseViewModel.errorHandler.observe(this, Observer {
             Toast.makeText(context, "Oops an error occurred ...", Toast.LENGTH_SHORT).show()
         })
+    }
+
+    fun closeKeyBoard() {
+        val inputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
+        inputMethodManager?.let {
+            it.hideSoftInputFromWindow(view?.windowToken, 0)
+        }
     }
 
     private fun initInternalObservers() {
