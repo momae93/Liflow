@@ -9,11 +9,13 @@ class MockCategoryDatabase {
             Category(
                 id = 1,
                 name = "Couple",
+                description = "This is couple category description",
                 pictureUrl = null
             ),
             Category(
                 id = 2,
                 name = "Friends",
+                description = "This is friends category description",
                 pictureUrl = null
             )
         )

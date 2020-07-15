@@ -4,5 +4,5 @@ import com.example.liflow.presentation.ui.base.IBaseNavigator
 
 interface ISearchNavigator: IBaseNavigator {
     fun navigateToUserDetails(userId: Int)
-    fun navigateToCategoryDetails(userId: Int)
+    fun navigateToCategoryDetails(categoryId: Int)
 }

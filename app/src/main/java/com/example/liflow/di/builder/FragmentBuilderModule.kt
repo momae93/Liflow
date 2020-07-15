@@ -1,6 +1,8 @@
 package com.example.liflow.di.builder
 
 import com.example.liflow.di.scope.FragmentScope
+import com.example.liflow.presentation.ui.category.fragment.CategoryDetailsFragment
+import com.example.liflow.presentation.ui.category.fragment.CategoryPostsFragment
 import com.example.liflow.presentation.ui.post.fragment.DailyPostFragment
 import com.example.liflow.presentation.ui.post.fragment.PostDetailsFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfileFragment
@@ -29,5 +31,13 @@ abstract class FragmentBuilderModule {
 
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun bindSearchFragmentt(): SearchFragment
+    abstract fun bindSearchFragment(): SearchFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun bindCategoryDetailsFragment(): CategoryDetailsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun bindCategoryPostsFragment(): CategoryPostsFragment
 }

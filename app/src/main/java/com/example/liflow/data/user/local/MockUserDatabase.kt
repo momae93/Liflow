@@ -12,6 +12,7 @@ class MockUserDatabase {
                 firstname = "Mickael",
                 lastname = "Au",
                 description = "This is Mickael description",
+                pictureUrl = null,
                 age = 23,
                 totalClap =  300,
                 isMale = true
@@ -23,6 +24,7 @@ class MockUserDatabase {
                 firstname = "John",
                 lastname = "Doe",
                 description = "This is John description",
+                pictureUrl = null,
                 age = 32,
                 totalClap =  22,
                 isMale = true

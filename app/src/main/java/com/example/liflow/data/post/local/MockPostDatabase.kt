@@ -12,6 +12,7 @@ class MockPostDatabase {
             Post(
                 id = 1,
                 authorId = 1,
+                categoryId = 1,
                 title = "How to improve your relation",
                 description = "This is a description",
                 solution = "This is a solution",
@@ -21,6 +22,7 @@ class MockPostDatabase {
             Post(
                 id = 2,
                 authorId = 2,
+                categoryId = 2,
                 title = "How to be a better friend",
                 description = "This is a description",
                 solution = "This is a solution",

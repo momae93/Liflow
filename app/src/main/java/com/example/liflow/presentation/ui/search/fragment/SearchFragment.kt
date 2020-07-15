@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.liflow.BR
@@ -13,6 +14,7 @@ import com.example.liflow.databinding.FragmentSearchBinding
 import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseFragment
 import com.example.liflow.presentation.ui.profile.adapter.PostRecyclerAdapter
+import com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragmentDirections
 import com.example.liflow.presentation.ui.search.adapter.SearchOptionsRecyclerAdapter
 import com.example.liflow.presentation.ui.search.adapter.SearchedCategoriesRecyclerAdapter
 import com.example.liflow.presentation.ui.search.adapter.SearchedUsersRecyclerAdapter
@@ -25,7 +27,7 @@ import javax.inject.Inject
 
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISearchNavigator>(),
-    ISearchNavigator {
+    ISearchNavigator, SearchedCategoriesRecyclerAdapter.OnCategoryListener {
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
@@ -59,7 +61,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISea
     }
 
     override fun navigateToCategoryDetails(categoryId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val action = SearchFragmentDirections
+            .actionNavigationSearchToNavigationCategoryDetails(categoryId)
+        findNavController().navigate(action)
     }
 
     private fun initSearchComponent() {
@@ -99,7 +103,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISea
     private fun observeSearchCategories() {
         viewModel.searchedCategories.observe(this, Observer { lists ->
             viewBinding.fragmentSearchRecyclerViewSearchResults.layoutManager = LinearLayoutManager(context)
-            viewBinding.fragmentSearchRecyclerViewSearchResults.adapter = SearchedCategoriesRecyclerAdapter(lists)
+            viewBinding.fragmentSearchRecyclerViewSearchResults.adapter = SearchedCategoriesRecyclerAdapter(lists, this)
         })
+    }
+
+    override fun onCategoryClick(categoryId: Int) {
+        navigateToCategoryDetails(categoryId)
     }
 }

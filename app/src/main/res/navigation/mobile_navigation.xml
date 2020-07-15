@@ -17,7 +17,11 @@
             android:id="@+id/navigation_search"
             android:name="com.example.liflow.presentation.ui.search.fragment.SearchFragment"
             android:label="@string/title_search"
-            tools:layout="@layout/fragment_search" />
+            tools:layout="@layout/fragment_search" >
+                <action
+                    android:id="@+id/action_navigation_search_to_navigation_category_details"
+                    app:destination="@id/navigation_category_details" />
+        </fragment>
 
         <fragment
             android:id="@+id/navigation_new"
@@ -57,6 +61,28 @@
                 <argument
                     android:name="postId"
                     app:argType="integer" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_category_details"
+            android:name="com.example.liflow.presentation.ui.category.fragment.CategoryDetailsFragment"
+            android:label="CategoryDetailsFragment" >
+                <argument
+                    android:name="categoryId"
+                    app:argType="integer" />
+                <action
+                    android:id="@+id/action_navigation_category_details_to_navigation_category_post"
+                    app:destination="@id/navigation_category_post" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_category_post"
+            android:name="com.example.liflow.presentation.ui.category.fragment.CategoryPostsFragment"
+            android:label="CategoryPostFragment" >
+                <argument
+                    android:name="categoryId"
+                    app:argType="integer" />
+                <action
+                    android:id="@+id/action_navigation_category_post_to_navigation_post_details"
+                    app:destination="@id/navigation_post_details" />
         </fragment>
 
 </navigation>

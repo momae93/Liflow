@@ -2,11 +2,12 @@ package com.example.liflow.presentation.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.liflow.di.scope.ActivityScope
 import com.example.liflow.domain.category.CategoryDomain
 import com.example.liflow.domain.post.PostDomain
 import com.example.liflow.domain.session.SessionDomain
 import com.example.liflow.domain.user.UserDomain
+import com.example.liflow.presentation.ui.category.viewmodel.CategoryDetailsViewModel
+import com.example.liflow.presentation.ui.category.viewmodel.CategoryPostsViewModel
 import com.example.liflow.presentation.ui.login.LoginViewModel
 import com.example.liflow.presentation.ui.main.MainViewModel
 import com.example.liflow.presentation.ui.post.viewmodel.DailyPostViewModel
@@ -56,6 +57,12 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
             }
             modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
                 SearchViewModel(userDomain, categoryDomain) as T
+            }
+            modelClass.isAssignableFrom(CategoryDetailsViewModel::class.java) -> {
+                CategoryDetailsViewModel(categoryDomain) as T
+            }
+            modelClass.isAssignableFrom(CategoryPostsViewModel::class.java) -> {
+                CategoryPostsViewModel(categoryDomain) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

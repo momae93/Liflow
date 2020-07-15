@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.liflow.databinding.ItemSearchCategoriesResultBinding
 import com.example.liflow.presentation.ui.search.model.SearchedCategory
 
-class SearchedCategoriesRecyclerAdapter(val list: List<SearchedCategory>): RecyclerView.Adapter<SearchedCategoriesViewHolder>() {
+class SearchedCategoriesRecyclerAdapter(val list: List<SearchedCategory>, private val onCategoryListener: OnCategoryListener): RecyclerView.Adapter<SearchedCategoriesViewHolder>() {
     private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchedCategoriesViewHolder {
@@ -16,7 +16,7 @@ class SearchedCategoriesRecyclerAdapter(val list: List<SearchedCategory>): Recyc
         val itemSearchedCategoriesBinding = ItemSearchCategoriesResultBinding.inflate(inflater, parent, false)
         context = parent.context
 
-        return SearchedCategoriesViewHolder(itemSearchedCategoriesBinding)
+        return SearchedCategoriesViewHolder(itemSearchedCategoriesBinding, onCategoryListener)
     }
 
     override fun getItemCount(): Int {
@@ -27,5 +27,9 @@ class SearchedCategoriesRecyclerAdapter(val list: List<SearchedCategory>): Recyc
         list[position].let { searchedCategories ->
             holder.bind(searchedCategories)
         }
+    }
+
+    interface OnCategoryListener {
+        fun onCategoryClick(categoryId: Int)
     }
 }
