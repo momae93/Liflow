@@ -2,7 +2,6 @@ package com.example.liflow.presentation.ui.category.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -71,10 +70,10 @@ class CategoryPostsFragment : BaseFragment<FragmentCategoryDetailsBinding, Categ
     }
 
     override fun onPostClick(postId: Int) {
-        navigateToCategoryDetailsFragment(postId)
+        navigateToPostDetailsFragment(postId)
     }
 
-    override fun navigateToCategoryDetailsFragment(postId: Int) {
+    override fun navigateToPostDetailsFragment(postId: Int) {
         val action = CategoryPostsFragmentDirections
             .actionNavigationCategoryPostToNavigationPostDetails(postId)
         findNavController().navigate(action)

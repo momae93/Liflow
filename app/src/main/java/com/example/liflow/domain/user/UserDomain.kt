@@ -10,19 +10,25 @@ class UserDomain: IUserDomain {
     private var getUserLikedPostsUC: GetUserLikedPosts
     private var getUserWrittenPostsUC: GetUserWrittenPosts
     private var getSearchedUsersUC: GetSearchedUsers
+    private var getLikedUsersUC: GetLikedUsers
+    private var getLikedCategoriesUC: GetLikedCategories
 
     @Inject
     constructor(getUserSession: GetUserSession,
                 getUserProfileDetails: GetUserProfileDetails,
                 getUserLikedPosts: GetUserLikedPosts,
                 getUserWrittenPosts: GetUserWrittenPosts,
-                getSearchedUsers: GetSearchedUsers
+                getSearchedUsers: GetSearchedUsers,
+                getLikedUsers: GetLikedUsers,
+                getLikedCategories: GetLikedCategories
     ) {
         this.getUserSessionUC = getUserSession
         this.getUserProfileDetailsUC = getUserProfileDetails
         this.getUserLikedPostsUC = getUserLikedPosts
         this.getUserWrittenPostsUC = getUserWrittenPosts
         this.getSearchedUsersUC = getSearchedUsers
+        this.getLikedUsersUC = getLikedUsers
+        this.getLikedCategoriesUC = getLikedCategories
     }
 
     override fun getUserSession(observer: DisposableObserver<String>, params: GetUserSession.Params) {
@@ -55,5 +61,19 @@ class UserDomain: IUserDomain {
         params: GetSearchedUsers.Params
     ) {
         return getSearchedUsersUC.execute(observer, params)
+    }
+
+    override fun getLikedUsers(
+        observer: DisposableObserver<GetLikedUsers.Response>,
+        params: GetLikedUsers.Params
+    ) {
+        return getLikedUsersUC.execute(observer, params)
+    }
+
+    override fun getLikedCategories(
+        observer: DisposableObserver<GetLikedCategories.Response>,
+        params: GetLikedCategories.Params
+    ) {
+        return getLikedCategoriesUC.execute(observer, params)
     }
 }

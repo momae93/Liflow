@@ -1,6 +1,7 @@
 package com.example.liflow.data.user
 
 import android.util.Log
+import com.example.liflow.data.category.local.MockCategoryDatabase
 import com.example.liflow.data.post.local.MockPostDatabase
 import com.example.liflow.data.user.local.MockUserDatabase
 import com.example.liflow.domain.user.IUserRepository
@@ -129,6 +130,56 @@ class UserRepository @Inject constructor() : IUserRepository {
         return Observable.just(
             GetSearchedUsers.Response(
                 list = searchedUsers
+            )
+        )
+    }
+
+    override fun getLikedUsers(params: GetLikedUsers.Params): Observable<GetLikedUsers.Response> {
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
+            ?: return Observable.error(Throwable("User token does not exists"))
+        val currentUser = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
+            ?: return Observable.error(Throwable("User does not exists"))
+        val likedUserIdx = MockUserDatabase.mockFollowingUser.filter { it.followingUserId == currentUser.id }.map { it.userId }
+        val filteredUsers = MockUserDatabase.mockUserData.filter { likedUserIdx.contains(it.id) }
+
+        val likedUsers = filteredUsers.map { user ->
+            GetLikedUsers.User(
+                userId = user.id,
+                firstname = user.firstname,
+                lastname = user.lastname,
+                pictureUrl = user.pictureUrl,
+                alreadyLiked = true,
+                totalNewPosts = 10
+            )
+        }
+
+        return Observable.just(
+            GetLikedUsers.Response(
+                list = likedUsers
+            )
+        )
+    }
+
+    override fun getLikedCategories(params: GetLikedCategories.Params): Observable<GetLikedCategories.Response> {
+        val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
+            ?: return Observable.error(Throwable("User token does not exists"))
+        val currentUser = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
+            ?: return Observable.error(Throwable("User does not exists"))
+        val likedCategoryIdx = MockCategoryDatabase.mockLikedCategory.filter { it.userId == currentUser.id }.map { it.categoryId }
+        val filteredCategories = MockCategoryDatabase.mockCategory.filter { likedCategoryIdx.contains(it.id) }
+
+        val likedCategories = filteredCategories.map { category ->
+            GetLikedCategories.Category(
+                categoryId = category.id,
+                name = category.name,
+                pictureUrl = category.pictureUrl,
+                alreadyLiked = true
+            )
+        }
+
+        return Observable.just(
+            GetLikedCategories.Response(
+                list = likedCategories
             )
         )
     }

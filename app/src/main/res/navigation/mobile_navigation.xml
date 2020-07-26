@@ -31,9 +31,13 @@
 
         <fragment
             android:id="@+id/navigation_like"
-            android:name="com.example.liflow.presentation.ui.like.LikeFragment"
+            android:name="com.example.liflow.presentation.ui.like.fragment.LikeFragment"
             android:label="@string/title_like"
-            tools:layout="@layout/fragment_like" />
+            tools:layout="@layout/fragment_like" >
+                <action
+                    android:id="@+id/action_navigation_like_categories_to_navigation_category_details"
+                    app:destination="@id/navigation_category_details" />
+        </fragment>
         <fragment
             android:id="@+id/navigation_profile"
             android:name="com.example.liflow.presentation.ui.profile.fragment.ProfileFragment"
@@ -83,6 +87,11 @@
                 <action
                     android:id="@+id/action_navigation_category_post_to_navigation_post_details"
                     app:destination="@id/navigation_post_details" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_like_categories"
+            android:name="com.example.liflow.presentation.ui.like.fragment.LikeCategoriesFragment"
+            android:label="LikeCategoriesFragment" >
         </fragment>
 
 </navigation>

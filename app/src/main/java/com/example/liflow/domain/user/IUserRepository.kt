@@ -9,4 +9,6 @@ interface IUserRepository {
     fun getUserLikedPosts(params: GetUserLikedPosts.Params): Observable<GetUserLikedPosts.Response>
     fun getUserWrittenPosts(params: GetUserWrittenPosts.Params): Observable<GetUserWrittenPosts.Response>
     fun getSearchedUsers(params: GetSearchedUsers.Params): Observable<GetSearchedUsers.Response>
+    fun getLikedUsers(params: GetLikedUsers.Params): Observable<GetLikedUsers.Response>
+    fun getLikedCategories(params: GetLikedCategories.Params): Observable<GetLikedCategories.Response>
 }

@@ -13,6 +13,7 @@ def rx_java_version = '3.0.0'
 def rx_android_version = '3.0.0'
 def glide_version = '4.11.0'
 def swipe_version = '2.3.2'
+def material_version = '1.1.0'
 
 android {
     compileOptions {
@@ -85,5 +86,8 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     implementation "com.yuyakaido.android:card-stack-view:$swipe_version"
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation "com.android.support:recyclerview-v7:28.0.0"
+
+    // Material
+    implementation "com.google.android.material:material:$material_version"
 }
