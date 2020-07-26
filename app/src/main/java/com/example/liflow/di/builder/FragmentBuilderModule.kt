@@ -7,10 +7,10 @@ import com.example.liflow.presentation.ui.like.fragment.LikeCategoriesFragment
 import com.example.liflow.presentation.ui.like.fragment.LikeFragment
 import com.example.liflow.presentation.ui.like.fragment.LikePostsFragment
 import com.example.liflow.presentation.ui.like.fragment.LikeUsersFragment
-import com.example.liflow.presentation.ui.like.viewmodel.LikeUsersViewModel
 import com.example.liflow.presentation.ui.post.fragment.DailyPostFragment
 import com.example.liflow.presentation.ui.post.fragment.PostDetailsFragment
-import com.example.liflow.presentation.ui.profile.fragment.ProfileFragment
+import com.example.liflow.presentation.ui.profile.fragment.CurrentCurrentProfileFragment
+import com.example.liflow.presentation.ui.profile.fragment.ProfileDetailsFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragment
 import com.example.liflow.presentation.ui.search.fragment.SearchFragment
 import dagger.Module
@@ -20,7 +20,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuilderModule {
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun bindProfileFragment(): ProfileFragment
+    abstract fun bindProfileFragment(): CurrentCurrentProfileFragment
 
     @FragmentScope
     @ContributesAndroidInjector
@@ -61,4 +61,8 @@ abstract class FragmentBuilderModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun bindLikePostsFragment(): LikePostsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun bindProfileDetailsFragment(): ProfileDetailsFragment
 }

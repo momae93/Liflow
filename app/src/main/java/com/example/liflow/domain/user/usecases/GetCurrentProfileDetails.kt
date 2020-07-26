@@ -1,17 +1,16 @@
 package com.example.liflow.domain.user.usecases
 
-import com.example.liflow.di.scope.ActivityScope
 import com.example.liflow.domain.AbstractUseCase
 import com.example.liflow.domain.user.IUserRepository
 import com.example.liflow.presentation.models.SchedulerProvider
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-class GetUserProfileDetails: AbstractUseCase<GetUserProfileDetails.Response, GetUserProfileDetails.Params> {
+class GetCurrentProfileDetails: AbstractUseCase<GetCurrentProfileDetails.Response, GetCurrentProfileDetails.Params> {
     private var userRepository: IUserRepository
 
     override fun buildUseCaseObservable(params: Params): Observable<Response> {
-        return userRepository.getUserProfileDetails(params)
+        return userRepository.getCurrentProfileDetails(params)
     }
 
     @Inject
@@ -19,8 +18,8 @@ class GetUserProfileDetails: AbstractUseCase<GetUserProfileDetails.Response, Get
         this.userRepository = userRepository
     }
 
-    class Params constructor(
-    )
+    class Params
+
     class Response constructor(
         val firstname: String,
         val lastname: String,

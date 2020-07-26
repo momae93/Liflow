@@ -5,7 +5,8 @@ import io.reactivex.rxjava3.observers.DisposableObserver
 
 interface IUserDomain {
     fun getUserSession(observer: DisposableObserver<String>, params: GetUserSession.Params)
-    fun getUserProfileDetails(observer: DisposableObserver<GetUserProfileDetails.Response>, params: GetUserProfileDetails.Params)
+    fun getCurrentProfileDetails(observer: DisposableObserver<GetCurrentProfileDetails.Response>, params: GetCurrentProfileDetails.Params)
+    fun getProfileDetails(observer: DisposableObserver<GetProfileDetails.Response>, params: GetProfileDetails.Params)
     fun getUserLikedPosts(observer: DisposableObserver<GetUserLikedPosts.Response>, params: GetUserLikedPosts.Params)
     fun getUserWrittenPosts(observer: DisposableObserver<GetUserWrittenPosts.Response>, params: GetUserWrittenPosts.Params)
     fun getSearchedUsers(observer: DisposableObserver<GetSearchedUsers.Response>, params: GetSearchedUsers.Params)

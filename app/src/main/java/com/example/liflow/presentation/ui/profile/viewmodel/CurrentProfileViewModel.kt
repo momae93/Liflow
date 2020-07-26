@@ -1,22 +1,20 @@
 package com.example.liflow.presentation.ui.profile.viewmodel
 
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.liflow.domain.AbstractObserver
 import com.example.liflow.domain.session.SessionDomain
 import com.example.liflow.domain.session.usecases.ClearSession
-import com.example.liflow.domain.session.usecases.SetSessionToken
 import com.example.liflow.domain.user.UserDomain
-import com.example.liflow.domain.user.usecases.GetUserProfileDetails
+import com.example.liflow.domain.user.usecases.GetCurrentProfileDetails
 import com.example.liflow.presentation.models.EErrorType
 import com.example.liflow.presentation.models.ErrorHandler
 import com.example.liflow.presentation.ui.base.BaseViewModel
-import com.example.liflow.presentation.ui.profile.fragment.IProfileNavigator
+import com.example.liflow.presentation.ui.profile.fragment.ICurrentProfileNavigator
 import com.example.liflow.presentation.ui.profile.model.UserProfileDetails
 import javax.inject.Inject
 
-class ProfileViewModel: BaseViewModel<IProfileNavigator> {
+class CurrentProfileViewModel: BaseViewModel<ICurrentProfileNavigator> {
     private var userDomain: UserDomain
     private var sessionDomain: SessionDomain
 
@@ -39,14 +37,14 @@ class ProfileViewModel: BaseViewModel<IProfileNavigator> {
 
     fun getUserProfileDetails() {
         _isLoading.value = true
-        userDomain.getUserProfileDetails(GetProfileDetailsObserver(), GetUserProfileDetails.Params())
+        userDomain.getCurrentProfileDetails(GetCurrentProfileDetailsObserver(), GetCurrentProfileDetails.Params())
     }
 
     private fun removeSessionTokenLocally() {
         sessionDomain.clearSession(ClearSessionObserver(), ClearSession.Params())
     }
 
-    private inner class GetProfileDetailsObserver : AbstractObserver<GetUserProfileDetails.Response>() {
+    private inner class GetCurrentProfileDetailsObserver : AbstractObserver<GetCurrentProfileDetails.Response>() {
         override fun onComplete() {
             _isLoading.value = false
         }
@@ -55,7 +53,7 @@ class ProfileViewModel: BaseViewModel<IProfileNavigator> {
             _errorHandler.value = ErrorHandler(EErrorType.INTERNAL_SERVER, "An error has occurred")
         }
 
-        override fun onNext(responseData: GetUserProfileDetails.Response) {
+        override fun onNext(responseData: GetCurrentProfileDetails.Response) {
             val userProfileDetails = UserProfileDetails.map(responseData)
             _userProfileDetailsLiveData.value = userProfileDetails
         }

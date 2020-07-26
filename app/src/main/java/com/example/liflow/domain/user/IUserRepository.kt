@@ -5,7 +5,8 @@ import io.reactivex.rxjava3.core.Observable
 
 interface IUserRepository {
     fun getUserSession(params: GetUserSession.Params): Observable<String>
-    fun getUserProfileDetails(params: GetUserProfileDetails.Params): Observable<GetUserProfileDetails.Response>
+    fun getCurrentProfileDetails(params: GetCurrentProfileDetails.Params): Observable<GetCurrentProfileDetails.Response>
+    fun getProfileDetails(params: GetProfileDetails.Params): Observable<GetProfileDetails.Response>
     fun getUserLikedPosts(params: GetUserLikedPosts.Params): Observable<GetUserLikedPosts.Response>
     fun getUserWrittenPosts(params: GetUserWrittenPosts.Params): Observable<GetUserWrittenPosts.Response>
     fun getSearchedUsers(params: GetSearchedUsers.Params): Observable<GetSearchedUsers.Response>

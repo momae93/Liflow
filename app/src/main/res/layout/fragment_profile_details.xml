@@ -5,13 +5,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel" />
+            type="com.example.liflow.presentation.ui.profile.viewmodel.ProfileDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.profile.fragment.ProfileFragment">
+        tools:context=".presentation.ui.profile.fragment.ProfileDetailsFragment">
 
         <TextView
             android:id="@+id/fragment_profile_textView_fullname"
@@ -56,19 +56,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/fragment_profile_textView_gender"
             app:layout_constraintTop_toTopOf="@+id/fragment_profile_textView_gender" />
-
-        <ImageButton
-            android:id="@+id/fragment_profile_imageButton_settings"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:background="@null"
-            android:src="@drawable/ic_settings"
-            android:onClick="@{() -> viewModel.onClickLogout()}"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_profile_textView_age"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/fragment_profile_imageView_picture"

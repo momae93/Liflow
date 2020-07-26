@@ -26,7 +26,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISearchNavigator>(),
-    ISearchNavigator, SearchedCategoriesRecyclerAdapter.OnCategoryListener {
+    ISearchNavigator,
+    SearchedCategoriesRecyclerAdapter.OnCategoryListener,
+    SearchedUsersRecyclerAdapter.OnUserListener {
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
@@ -56,7 +58,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISea
     override fun getNavigator(): ISearchNavigator = this
 
     override fun navigateToUserDetails(userId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val action = SearchFragmentDirections
+            .actionNavigationSearchToProfileDetailsFragment(userId)
+        findNavController().navigate(action)
     }
 
     override fun navigateToCategoryDetails(categoryId: Int) {
@@ -95,7 +99,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISea
     private fun observeSearchUsers() {
         viewModel.searchedUsers.observe(this, Observer { lists ->
             viewBinding.fragmentSearchRecyclerViewSearchResults.layoutManager = LinearLayoutManager(context)
-            viewBinding.fragmentSearchRecyclerViewSearchResults.adapter = SearchedUsersRecyclerAdapter(lists)
+            viewBinding.fragmentSearchRecyclerViewSearchResults.adapter = SearchedUsersRecyclerAdapter(lists, this)
         })
     }
 
@@ -109,5 +113,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel, ISea
     override fun onCategoryClick(categoryId: Int) {
         closeKeyBoard()
         navigateToCategoryDetails(categoryId)
+    }
+
+    override fun onUserClick(userId: Int) {
+        closeKeyBoard()
+        navigateToUserDetails(userId)
     }
 }

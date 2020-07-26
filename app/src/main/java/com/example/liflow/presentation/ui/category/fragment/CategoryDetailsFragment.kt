@@ -73,7 +73,7 @@ class CategoryDetailsFragment : BaseFragment<FragmentCategoryDetailsBinding, Cat
     }
 
     override fun onUserClick(userId: Int) {
-        Toast.makeText(context, "Clicked on $userId", Toast.LENGTH_SHORT).show()
+        navigateToProfileDetailsFragment(userId)
     }
 
     override fun navigateToCategoryPostsFragment() {
@@ -82,5 +82,11 @@ class CategoryDetailsFragment : BaseFragment<FragmentCategoryDetailsBinding, Cat
                 .actionNavigationCategoryDetailsToNavigationCategoryPost(it)
             findNavController().navigate(action)
         }
+    }
+
+    override fun navigateToProfileDetailsFragment(userId: Int) {
+        val action = CategoryDetailsFragmentDirections
+            .actionNavigationCategoryDetailsToNavigationProfileDetails(userId)
+        findNavController().navigate(action)
     }
 }

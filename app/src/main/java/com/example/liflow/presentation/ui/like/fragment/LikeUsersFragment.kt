@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.liflow.BR
 
@@ -14,6 +15,7 @@ import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseFragment
 import com.example.liflow.presentation.ui.like.adapter.LikedUsersRecyclerAdapter
 import com.example.liflow.presentation.ui.like.viewmodel.LikeUsersViewModel
+import com.example.liflow.presentation.ui.search.fragment.SearchFragmentDirections
 import javax.inject.Inject
 
 class LikeUsersFragment :
@@ -51,8 +53,9 @@ class LikeUsersFragment :
     override fun getNavigator(): ILikeUsersNavigator = this
 
     override fun navigateToUsersDetailsFragment(userId: Int) {
-        Toast.makeText(context, "Navigating to $userId ...", Toast.LENGTH_SHORT).show()
-    }
+        val action = LikeFragmentDirections
+            .actionNavigationLikeToNavigationProfileDetails(userId)
+        findNavController().navigate(action)    }
 
     override fun initObservers() {
         super.initObservers()

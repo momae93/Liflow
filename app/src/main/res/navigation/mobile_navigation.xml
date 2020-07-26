@@ -21,6 +21,9 @@
                 <action
                     android:id="@+id/action_navigation_search_to_navigation_category_details"
                     app:destination="@id/navigation_category_details" />
+                <action
+                    android:id="@+id/action_navigation_search_to_profileDetailsFragment"
+                    app:destination="@id/navigation_profile_details" />
         </fragment>
 
         <fragment
@@ -37,12 +40,15 @@
                 <action
                     android:id="@+id/action_navigation_like_categories_to_navigation_category_details"
                     app:destination="@id/navigation_category_details" />
+                <action
+                    android:id="@+id/action_navigation_like_to_navigation_profile_details"
+                    app:destination="@id/navigation_profile_details" />
         </fragment>
         <fragment
             android:id="@+id/navigation_profile"
-            android:name="com.example.liflow.presentation.ui.profile.fragment.ProfileFragment"
+            android:name="com.example.liflow.presentation.ui.profile.fragment.CurrentCurrentProfileFragment"
             android:label="@string/title_profile"
-            tools:layout="@layout/fragment_profile" >
+            tools:layout="@layout/fragment_current_profile" >
                 <action
                     android:id="@+id/action_navigation_profile_to_navigation_profile_post"
                     app:destination="@id/navigation_profile_post" />
@@ -73,6 +79,9 @@
                 <action
                     android:id="@+id/action_navigation_category_details_to_navigation_category_post"
                     app:destination="@id/navigation_category_post" />
+                <action
+                    android:id="@+id/action_navigation_category_details_to_navigation_profile_details"
+                    app:destination="@id/navigation_profile_details" />
         </fragment>
         <fragment
             android:id="@+id/navigation_category_post"
@@ -86,9 +95,11 @@
                     app:destination="@id/navigation_post_details" />
         </fragment>
         <fragment
-            android:id="@+id/navigation_like_categories"
-            android:name="com.example.liflow.presentation.ui.like.fragment.LikeCategoriesFragment"
-            android:label="LikeCategoriesFragment" >
+            android:id="@+id/navigation_profile_details"
+            android:name="com.example.liflow.presentation.ui.profile.fragment.ProfileDetailsFragment"
+            android:label="ProfileDetailsFragment" >
+                <argument
+                    android:name="userId"
+                    app:argType="integer" />
         </fragment>
-
 </navigation>

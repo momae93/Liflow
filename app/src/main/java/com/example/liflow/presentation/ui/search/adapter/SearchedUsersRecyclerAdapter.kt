@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.liflow.databinding.ItemSearchUsersResultBinding
 import com.example.liflow.presentation.ui.search.model.SearchedUser
 
-class SearchedUsersRecyclerAdapter(val list: List<SearchedUser>): RecyclerView.Adapter<SearchedUsersViewHolder>() {
+class SearchedUsersRecyclerAdapter(val list: List<SearchedUser>, private val onUserListener: OnUserListener): RecyclerView.Adapter<SearchedUsersViewHolder>() {
     private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchedUsersViewHolder {
@@ -16,7 +16,7 @@ class SearchedUsersRecyclerAdapter(val list: List<SearchedUser>): RecyclerView.A
         val itemSearchedUsersBinding = ItemSearchUsersResultBinding.inflate(inflater, parent, false)
         context = parent.context
 
-        return SearchedUsersViewHolder(itemSearchedUsersBinding)
+        return SearchedUsersViewHolder(itemSearchedUsersBinding, onUserListener)
     }
 
     override fun getItemCount(): Int {
@@ -27,5 +27,9 @@ class SearchedUsersRecyclerAdapter(val list: List<SearchedUser>): RecyclerView.A
         list[position].let { searchedUsers ->
             holder.bind(searchedUsers)
         }
+    }
+
+    interface OnUserListener {
+        fun onUserClick(userId: Int)
     }
 }

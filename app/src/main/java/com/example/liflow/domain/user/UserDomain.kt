@@ -6,16 +6,18 @@ import javax.inject.Inject
 
 class UserDomain: IUserDomain {
     private var getUserSessionUC: GetUserSession
-    private var getUserProfileDetailsUC: GetUserProfileDetails
+    private var getCurrentProfileDetailsUC: GetCurrentProfileDetails
     private var getUserLikedPostsUC: GetUserLikedPosts
     private var getUserWrittenPostsUC: GetUserWrittenPosts
     private var getSearchedUsersUC: GetSearchedUsers
     private var getLikedUsersUC: GetLikedUsers
     private var getLikedCategoriesUC: GetLikedCategories
+    private var getProfileDetailsUC: GetProfileDetails
 
     @Inject
     constructor(getUserSession: GetUserSession,
-                getUserProfileDetails: GetUserProfileDetails,
+                getCurrentProfileDetails: GetCurrentProfileDetails,
+                getProfileDetails: GetProfileDetails,
                 getUserLikedPosts: GetUserLikedPosts,
                 getUserWrittenPosts: GetUserWrittenPosts,
                 getSearchedUsers: GetSearchedUsers,
@@ -23,11 +25,13 @@ class UserDomain: IUserDomain {
                 getLikedCategories: GetLikedCategories
     ) {
         this.getUserSessionUC = getUserSession
-        this.getUserProfileDetailsUC = getUserProfileDetails
+        this.getCurrentProfileDetailsUC = getCurrentProfileDetails
+        this.getProfileDetailsUC = getProfileDetails
         this.getUserLikedPostsUC = getUserLikedPosts
         this.getUserWrittenPostsUC = getUserWrittenPosts
         this.getSearchedUsersUC = getSearchedUsers
         this.getLikedUsersUC = getLikedUsers
+        this.getLikedCategoriesUC = getLikedCategories
         this.getLikedCategoriesUC = getLikedCategories
     }
 
@@ -35,11 +39,18 @@ class UserDomain: IUserDomain {
         return getUserSessionUC.execute(observer, params)
     }
 
-    override fun getUserProfileDetails(
-        observer: DisposableObserver<GetUserProfileDetails.Response>,
-        params: GetUserProfileDetails.Params
+    override fun getCurrentProfileDetails(
+        observer: DisposableObserver<GetCurrentProfileDetails.Response>,
+        params: GetCurrentProfileDetails.Params
     ) {
-        return getUserProfileDetailsUC.execute(observer, params)
+        return getCurrentProfileDetailsUC.execute(observer, params)
+    }
+
+    override fun getProfileDetails(
+        observer: DisposableObserver<GetProfileDetails.Response>,
+        params: GetProfileDetails.Params
+    ) {
+        return getProfileDetailsUC.execute(observer, params)
     }
 
     override fun getUserLikedPosts(

@@ -4,11 +4,6 @@ import com.example.liflow.domain.post.usecases.GetPostDetails
 import com.example.liflow.domain.post.usecases.GetRandomDailyPost
 import com.example.liflow.domain.post.usecases.PostClapsPost
 import com.example.liflow.domain.post.usecases.PostLikePost
-import com.example.liflow.domain.user.usecases.GetUserLikedPosts
-import com.example.liflow.domain.user.usecases.GetUserProfileDetails
-import com.example.liflow.domain.user.usecases.GetUserSession
-import com.example.liflow.domain.user.usecases.GetUserWrittenPosts
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import javax.inject.Inject
 

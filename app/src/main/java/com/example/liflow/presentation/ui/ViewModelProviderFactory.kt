@@ -17,7 +17,8 @@ import com.example.liflow.presentation.ui.main.MainViewModel
 import com.example.liflow.presentation.ui.post.viewmodel.DailyPostViewModel
 import com.example.liflow.presentation.ui.post.viewmodel.PostDetailsViewModel
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
-import com.example.liflow.presentation.ui.profile.viewmodel.ProfileViewModel
+import com.example.liflow.presentation.ui.profile.viewmodel.CurrentProfileViewModel
+import com.example.liflow.presentation.ui.profile.viewmodel.ProfileDetailsViewModel
 import com.example.liflow.presentation.ui.search.viewmodel.SearchViewModel
 import com.example.liflow.presentation.ui.splash.SplashViewModel
 import javax.inject.Inject
@@ -47,8 +48,8 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(userDomain) as T
             }
-            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(userDomain, sessionDomain) as T
+            modelClass.isAssignableFrom(CurrentProfileViewModel::class.java) -> {
+                CurrentProfileViewModel(userDomain, sessionDomain) as T
             }
             modelClass.isAssignableFrom(ProfilePostViewModel::class.java) -> {
                 ProfilePostViewModel(userDomain) as T
@@ -79,6 +80,9 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
             }
             modelClass.isAssignableFrom(LikePostsViewModel::class.java) -> {
                 LikePostsViewModel(userDomain) as T
+            }
+            modelClass.isAssignableFrom(ProfileDetailsViewModel::class.java) -> {
+                ProfileDetailsViewModel(userDomain) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -28,14 +28,34 @@ class UserRepository @Inject constructor() : IUserRepository {
         return Observable.just(sessionToken.token)
     }
 
-    override fun getUserProfileDetails(params: GetUserProfileDetails.Params): Observable<GetUserProfileDetails.Response> {
+    override fun getCurrentProfileDetails(params: GetCurrentProfileDetails.Params): Observable<GetCurrentProfileDetails.Response> {
         Log.d("SESSION_TOKEN_REPO", sessionToken.hashCode().toString())
         val sessionToken = MockUserDatabase.mockUserSession.find { it.token == sessionToken }
             ?: return Observable.error(Throwable("User token does not exists"))
-        val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.userId }
+        val user = MockUserDatabase.mockUserData.find { it.id == sessionToken.id }
             ?: return Observable.error(Throwable("User does not exists"))
 
-        val userProfileDetails = GetUserProfileDetails.Response(
+        val userProfileDetails = GetCurrentProfileDetails.Response(
+            firstname = user.firstname,
+            lastname = user.lastname,
+            age = user.age,
+            isMale = user.isMale,
+            totalClap = user.totalClap,
+            description = user.description,
+            totalFollower = MockUserDatabase.mockFollowingUser.filter { it.followingUserId == user.id }.count(),
+            totalFollowing = MockUserDatabase.mockFollowingUser.filter { it.userId == user.id }.count(),
+            totalBadges = MockPostDatabase.mockLikedPost.filter{ it.userId == user.id }.count(),
+            totalPostWritten = MockPostDatabase.mockPostData.filter { it.authorId == user.id }.count()
+        )
+
+        return Observable.just(userProfileDetails)
+    }
+
+    override fun getProfileDetails(params: GetProfileDetails.Params): Observable<GetProfileDetails.Response> {
+        val user = MockUserDatabase.mockUserData.find { it.id == params.userId }
+            ?: return Observable.error(Throwable("User does not exists"))
+
+        val userProfileDetails = GetProfileDetails.Response(
             firstname = user.firstname,
             lastname = user.lastname,
             age = user.age,
