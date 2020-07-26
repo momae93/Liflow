@@ -27,9 +27,12 @@ class GetUserLikedPosts:
     )
 
     class LikedPost constructor(
-        val id: Int,
+        val authorId: Int,
+        val postId: Int,
+        val categoryId: Int,
+        val categoryName: String,
         val title: String,
-        val category: String,
-        val pictureUrl: String?
+        val pictureUrl: String?,
+        val alreadyLiked: Boolean
     )
 }

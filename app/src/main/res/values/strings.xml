@@ -24,8 +24,10 @@
     <string name="fragment_profile_stats_followers">Followers</string>
     <string name="fragment_profile_stats_following">Following</string>
     <string name="fragment_profile_stats_claps">Claps</string>
-    <string name="fragment_profile_posts_liked">Liked</string>
-    <string name="fragment_profile_posts_written">Written</string>
+    <string name="fragment_profile_posts_badges">Badges</string>
+    <string name="fragment_profile_posts_posts">Posts</string>
     <string name="follow">Follow</string>
     <string name="followed">Followed</string>
+    <string name="like">Like</string>
+    <string name="unlike">Unlike</string>
 </resources>

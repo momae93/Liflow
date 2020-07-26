@@ -10,7 +10,7 @@ class UserProfileDetails(
     val totalFollower: String,
     val totalFollowing: String,
     val totalClap: String,
-    val totalPostLiked: String,
+    val totalBadges: String,
     val totalPostWritten: String
 ) {
     companion object {
@@ -20,7 +20,7 @@ class UserProfileDetails(
 
         fun map(responseData: GetUserProfileDetails.Response): UserProfileDetails {
             val gender = if (responseData.isMale) "Male" else "Female"
-            val totalPostLiked = "${responseData.totalPostLiked} ${adaptTextWhenPlural(responseData.totalPostLiked)} liked"
+            val totalBadges = "${responseData.totalBadges} badges"
             val totalPostWritten = "${responseData.totalPostWritten} ${adaptTextWhenPlural(responseData.totalPostWritten)} written"
 
             return UserProfileDetails(
@@ -31,7 +31,7 @@ class UserProfileDetails(
                 totalFollower = "${responseData.totalFollower}",
                 totalFollowing = "${responseData.totalFollowing}",
                 totalClap = "${responseData.totalClap}",
-                totalPostLiked = totalPostLiked,
+                totalBadges = totalBadges,
                 totalPostWritten = totalPostWritten
             )
         }

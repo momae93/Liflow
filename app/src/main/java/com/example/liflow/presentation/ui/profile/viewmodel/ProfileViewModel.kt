@@ -29,9 +29,8 @@ class ProfileViewModel: BaseViewModel<IProfileNavigator> {
         this.sessionDomain = sessionDomain
     }
 
-    fun onClickSwitchToLikedPostsFragment () { getNavigator()?.navigateToPostFragment(isLikedPostsCategory = true) }
-
-    fun onClickSwitchToWrittenPostsFragment () { getNavigator()?.navigateToPostFragment(isLikedPostsCategory = false) }
+    fun onClickSwitchToWrittenPostsFragment () { getNavigator()?.navigateToWrittenPostsFragment() }
+    fun onClickSwitchToBadgesFragment () { getNavigator()?.navigateToBadgesFragment() }
 
     fun onClickLogout () {
         removeSessionTokenLocally()

@@ -203,11 +203,11 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragment_profile_layout_likedPosts"
+            android:id="@+id/fragment_profile_layout_badges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:onClick="@{() -> viewModel.onClickSwitchToLikedPostsFragment()}"
+            android:onClick="@{() -> viewModel.onClickSwitchToBadgesFragment()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_profile_textView_description">
@@ -218,11 +218,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="@string/fragment_profile_posts_liked"
+                android:text="@string/fragment_profile_posts_badges"
                 android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_big"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_profile_textView_likedPosts_nb"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_profile_textView_badges_nb"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,12 +230,12 @@
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
-                android:id="@+id/fragment_profile_textView_likedPosts_nb"
+                android:id="@+id/fragment_profile_textView_badges_nb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="@{viewModel.profileDetails.totalPostLiked}"
+                android:text="@{viewModel.profileDetails.totalBadges}"
                 android:textColor="@color/colorGreenMint"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/fragment_profile_textView_liked"
@@ -252,7 +252,7 @@
             android:background="@color/colorDarkGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_layout_likedPosts" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_profile_layout_badges" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_profile_layout_writtenPosts"
@@ -270,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="@string/fragment_profile_posts_written"
+                android:text="@string/fragment_profile_posts_posts"
                 android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_big"

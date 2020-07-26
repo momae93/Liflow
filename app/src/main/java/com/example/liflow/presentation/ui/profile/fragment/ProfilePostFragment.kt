@@ -30,28 +30,11 @@ class ProfilePostFragment :
 
     private lateinit var viewModel: ProfilePostViewModel
     private lateinit var viewBinding: FragmentProfilePostBinding
-    private var isLikedPostCategory: Boolean? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            val safeArgs = ProfilePostFragmentArgs.fromBundle(it)
-            isLikedPostCategory = safeArgs.isLikedPostsCategory
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = getViewBinding() as FragmentProfilePostBinding
-        isLikedPostCategory?.let {
-            viewModel.setTitle(it)
-            if (it) {
-                viewModel.getUserLikedPosts()
-            }
-            else {
-                viewModel.getUserWrittenPosts()
-            }
-        }
+        viewModel.getUserWrittenPosts()
     }
 
     override fun getLayoutId(): Int {

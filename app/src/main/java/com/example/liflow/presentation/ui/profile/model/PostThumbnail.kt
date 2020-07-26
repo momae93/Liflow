@@ -10,17 +10,6 @@ class PostThumbnail(
     val pictureUrl: String?
 ) {
     companion object {
-        fun map(responseData: GetUserLikedPosts.Response): List<PostThumbnail> {
-            return responseData.list.map {
-                PostThumbnail(
-                    id = it.id,
-                    title = it.title,
-                    category = it.category,
-                    pictureUrl = it.pictureUrl
-                )
-            }
-        }
-
         fun map(responseData: GetUserWrittenPosts.Response): List<PostThumbnail> {
             return responseData.list.map {
                 PostThumbnail(

@@ -44,7 +44,7 @@ class UserRepository @Inject constructor() : IUserRepository {
             description = user.description,
             totalFollower = MockUserDatabase.mockFollowingUser.filter { it.followingUserId == user.id }.count(),
             totalFollowing = MockUserDatabase.mockFollowingUser.filter { it.userId == user.id }.count(),
-            totalPostLiked = MockPostDatabase.mockLikedPost.filter{ it.userId == user.id }.count(),
+            totalBadges = MockPostDatabase.mockLikedPost.filter{ it.userId == user.id }.count(),
             totalPostWritten = MockPostDatabase.mockPostData.filter { it.authorId == user.id }.count()
         )
 
@@ -66,10 +66,13 @@ class UserRepository @Inject constructor() : IUserRepository {
             .filter { likedPostIds.contains(it.id) }
             .map {
                 GetUserLikedPosts.LikedPost(
-                    id = it.id,
+                    authorId = it.authorId,
+                    postId = it.id,
                     title = it.title,
-                    category = it.category,
-                    pictureUrl = LOREM_IPSUM_IMAGE
+                    categoryName = it.category,
+                    categoryId = it.categoryId,
+                    pictureUrl = LOREM_IPSUM_IMAGE,
+                    alreadyLiked = true
                 )
             }
 

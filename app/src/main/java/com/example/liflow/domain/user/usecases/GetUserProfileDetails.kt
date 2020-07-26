@@ -30,7 +30,7 @@ class GetUserProfileDetails: AbstractUseCase<GetUserProfileDetails.Response, Get
         val totalFollower: Int,
         val totalFollowing: Int,
         val totalClap: Int,
-        val totalPostLiked: Int,
+        val totalBadges: Int,
         val totalPostWritten: Int
     )
 }

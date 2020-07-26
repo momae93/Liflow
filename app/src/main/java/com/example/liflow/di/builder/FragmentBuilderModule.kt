@@ -5,6 +5,7 @@ import com.example.liflow.presentation.ui.category.fragment.CategoryDetailsFragm
 import com.example.liflow.presentation.ui.category.fragment.CategoryPostsFragment
 import com.example.liflow.presentation.ui.like.fragment.LikeCategoriesFragment
 import com.example.liflow.presentation.ui.like.fragment.LikeFragment
+import com.example.liflow.presentation.ui.like.fragment.LikePostsFragment
 import com.example.liflow.presentation.ui.like.fragment.LikeUsersFragment
 import com.example.liflow.presentation.ui.like.viewmodel.LikeUsersViewModel
 import com.example.liflow.presentation.ui.post.fragment.DailyPostFragment
@@ -56,4 +57,8 @@ abstract class FragmentBuilderModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun bindLikeCategoriesFragment(): LikeCategoriesFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun bindLikePostsFragment(): LikePostsFragment
 }

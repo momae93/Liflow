@@ -43,6 +43,7 @@ class LikeFragment : BaseFragment<FragmentLikeBinding, LikeViewModel, ILikeNavig
         TabLayoutMediator(tabLayout, viewPager) { currentTab, currentPosition ->
             currentTab.text = when (currentPosition) {
                 LikePageAdapter.USERS_SCREEN_POSITION -> "Users"
+                LikePageAdapter.POSTS_SCREEN_POSITION -> "Posts"
                 LikePageAdapter.CATEGORY_SCREEN_POSITION -> "Categories"
                 else -> "Others"
             }

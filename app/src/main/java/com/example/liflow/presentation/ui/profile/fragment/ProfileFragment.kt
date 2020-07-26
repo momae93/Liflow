@@ -40,10 +40,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel, I
         return viewModel
     }
 
-    override fun navigateToPostFragment(isLikedPostsCategory: Boolean) {
+    override fun navigateToWrittenPostsFragment() {
         val action = ProfileFragmentDirections
-            .actionNavigationProfileToNavigationProfilePost(isLikedPostsCategory)
+            .actionNavigationProfileToNavigationProfilePost()
         findNavController().navigate(action)
+    }
+
+    override fun navigateToBadgesFragment() {
     }
 
     override fun navigateToLoginActivity() {

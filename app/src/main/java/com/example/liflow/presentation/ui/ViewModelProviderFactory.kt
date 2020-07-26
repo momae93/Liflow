@@ -9,6 +9,7 @@ import com.example.liflow.domain.user.UserDomain
 import com.example.liflow.presentation.ui.category.viewmodel.CategoryDetailsViewModel
 import com.example.liflow.presentation.ui.category.viewmodel.CategoryPostsViewModel
 import com.example.liflow.presentation.ui.like.viewmodel.LikeCategoriesViewModel
+import com.example.liflow.presentation.ui.like.viewmodel.LikePostsViewModel
 import com.example.liflow.presentation.ui.like.viewmodel.LikeUsersViewModel
 import com.example.liflow.presentation.ui.like.viewmodel.LikeViewModel
 import com.example.liflow.presentation.ui.login.LoginViewModel
@@ -75,6 +76,9 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
             }
             modelClass.isAssignableFrom(LikeCategoriesViewModel::class.java) -> {
                 LikeCategoriesViewModel(userDomain) as T
+            }
+            modelClass.isAssignableFrom(LikePostsViewModel::class.java) -> {
+                LikePostsViewModel(userDomain) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

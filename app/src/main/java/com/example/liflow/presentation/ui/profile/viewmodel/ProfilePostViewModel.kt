@@ -31,29 +31,9 @@ class ProfilePostViewModel : BaseViewModel<IProfilePostNavigator> {
         _titleMutableLiveData.value = if (isLikedPostsCategory) "Posts liked" else "Posts written"
     }
 
-    fun getUserLikedPosts() {
-        _isLoading.value = true
-        userDomain.getUserLikedPosts(GetUserLikedPostsObserver(), GetUserLikedPosts.Params())
-    }
-
     fun getUserWrittenPosts() {
         _isLoading.value = true
         userDomain.getUserWrittenPosts(GetUserWrittenPostsObserver(), GetUserWrittenPosts.Params())
-    }
-
-    private inner class GetUserLikedPostsObserver : AbstractObserver<GetUserLikedPosts.Response>() {
-        override fun onComplete() {
-            _isLoading.value = false
-        }
-
-        override fun onError(e: Throwable) {
-            _errorHandler.value = ErrorHandler(EErrorType.INTERNAL_SERVER, "An error has occurred")
-        }
-
-        override fun onNext(responseData: GetUserLikedPosts.Response) {
-            val likedPosts = PostThumbnail.map(responseData)
-            _postsMutableLiveData.value = likedPosts
-        }
     }
 
     private inner class GetUserWrittenPostsObserver : AbstractObserver<GetUserWrittenPosts.Response>() {

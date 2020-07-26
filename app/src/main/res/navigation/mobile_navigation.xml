@@ -51,9 +51,6 @@
             android:id="@+id/navigation_profile_post"
             android:name="com.example.liflow.presentation.ui.profile.fragment.ProfilePostFragment"
             android:label="@string/title_profile_post" >
-                <argument
-                    android:name="isLikedPostsCategory"
-                    app:argType="boolean" />
                 <action
                     android:id="@+id/action_navigation_profile_post_to_navigation_post_details"
                     app:destination="@id/navigation_post_details" />
