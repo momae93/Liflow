@@ -13,6 +13,7 @@ class UserDomain: IUserDomain {
     private var getLikedUsersUC: GetLikedUsers
     private var getLikedCategoriesUC: GetLikedCategories
     private var getProfileDetailsUC: GetProfileDetails
+    private var postUserUC: PostUser
 
     @Inject
     constructor(getUserSession: GetUserSession,
@@ -22,7 +23,8 @@ class UserDomain: IUserDomain {
                 getUserWrittenPosts: GetUserWrittenPosts,
                 getSearchedUsers: GetSearchedUsers,
                 getLikedUsers: GetLikedUsers,
-                getLikedCategories: GetLikedCategories
+                getLikedCategories: GetLikedCategories,
+                postUser: PostUser
     ) {
         this.getUserSessionUC = getUserSession
         this.getCurrentProfileDetailsUC = getCurrentProfileDetails
@@ -33,6 +35,7 @@ class UserDomain: IUserDomain {
         this.getLikedUsersUC = getLikedUsers
         this.getLikedCategoriesUC = getLikedCategories
         this.getLikedCategoriesUC = getLikedCategories
+        this.postUserUC = postUser
     }
 
     override fun getUserSession(observer: DisposableObserver<String>, params: GetUserSession.Params) {
@@ -86,5 +89,9 @@ class UserDomain: IUserDomain {
         params: GetLikedCategories.Params
     ) {
         return getLikedCategoriesUC.execute(observer, params)
+    }
+
+    override fun postUser(observer: DisposableObserver<String>, params: PostUser.Params) {
+        return postUserUC.execute(observer, params)
     }
 }

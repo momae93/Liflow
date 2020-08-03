@@ -12,4 +12,5 @@ interface IUserDomain {
     fun getSearchedUsers(observer: DisposableObserver<GetSearchedUsers.Response>, params: GetSearchedUsers.Params)
     fun getLikedUsers(observer: DisposableObserver<GetLikedUsers.Response>, params: GetLikedUsers.Params)
     fun getLikedCategories(observer: DisposableObserver<GetLikedCategories.Response>, params: GetLikedCategories.Params)
+    fun postUser(observer: DisposableObserver<String>, params: PostUser.Params)
 }

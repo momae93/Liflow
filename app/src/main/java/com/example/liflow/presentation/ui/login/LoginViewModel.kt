@@ -9,9 +9,11 @@ import com.example.liflow.domain.session.usecases.SetSessionToken
 import com.example.liflow.domain.user.UserDomain
 import com.example.liflow.domain.user.usecases.GetUserSession
 import com.example.liflow.presentation.models.State
+import com.example.liflow.presentation.ui.base.BaseViewModel
+import com.example.liflow.presentation.ui.profile.fragment.IProfilePostNavigator
 import javax.inject.Inject
 
-class LoginViewModel: ViewModel {
+class LoginViewModel: BaseViewModel<ILoginNavigator> {
     private var userDomain: UserDomain
     private var sessionDomain: SessionDomain
     private var _loginStateLiveData: MutableLiveData<State<String>> = MutableLiveData()
@@ -36,6 +38,10 @@ class LoginViewModel: ViewModel {
         }
 
         login(currentUsername, currentPassword)
+    }
+
+    fun onClickRegister() {
+        getNavigator()?.navigateToRegisterActivity()
     }
 
     fun saveSessionTokenLocally(sessionToken: String) {

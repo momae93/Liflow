@@ -14,7 +14,7 @@ import com.example.liflow.presentation.ui.main.MainActivity
 import javax.inject.Inject
 import javax.inject.Named
 
-class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), ISplashNavigator {
+class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel, ISplashNavigator>(), ISplashNavigator {
     private lateinit var viewModel: SplashViewModel
 
     private lateinit var viewBinding: ActivitySplashBinding
@@ -64,4 +64,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), I
         startActivity(intent)
         finish()
     }
+
+    override fun getNavigator(): ISplashNavigator = this
 }

@@ -2,7 +2,7 @@ package com.example.liflow.data.user.local.model
 
 data class User(
     val id: Int,
-    val username: String,
+    val email: String,
     val password: String,
     val firstname: String,
     val lastname: String,

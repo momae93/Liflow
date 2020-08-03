@@ -21,6 +21,7 @@ class SessionRepository @Inject constructor() : ISessionRepository {
 
     override fun setSessionToken(params: SetSessionToken.Params): Observable<SetSessionToken.Response> {
         val editor = sharedPreferences.edit()
+        editor.clear()
         editor.putString(sessionTokenKey, params.sessionToken)
         editor.apply()
 

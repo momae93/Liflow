@@ -4,9 +4,12 @@ import android.util.Log
 import com.example.liflow.data.category.local.MockCategoryDatabase
 import com.example.liflow.data.post.local.MockPostDatabase
 import com.example.liflow.data.user.local.MockUserDatabase
+import com.example.liflow.data.user.local.model.User
+import com.example.liflow.data.user.local.model.UserSession
 import com.example.liflow.domain.user.IUserRepository
 import com.example.liflow.domain.user.usecases.*
 import io.reactivex.rxjava3.core.Observable
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -19,7 +22,7 @@ class UserRepository @Inject constructor() : IUserRepository {
     private val LOREM_IPSUM_IMAGE = "https://picsum.photos/200"
 
     override fun getUserSession(params: GetUserSession.Params): Observable<String> {
-        val user = MockUserDatabase.mockUserData.find { it.password == params.password && it.username == params.username }
+        val user = MockUserDatabase.mockUserData.find { it.password == params.password && it.email == params.username }
             ?: return Observable.error(Throwable("User does not exists"))
 
         val sessionToken = MockUserDatabase.mockUserSession.find { it.userId == user.id }
@@ -205,5 +208,36 @@ class UserRepository @Inject constructor() : IUserRepository {
                 list = likedCategories
             )
         )
+    }
+
+    override fun postUser(params: PostUser.Params): Observable<String> {
+        val maxUser = MockUserDatabase.mockUserData.maxBy { it.id }
+        val newUserId = maxUser?.id?.plus(1) ?: 1
+        val maxUserSession = MockUserDatabase.mockUserSession.maxBy { it.id }
+        val newSessionId = maxUserSession?.id?.plus(1) ?: 1
+        val token = UUID.randomUUID().toString()
+        MockUserDatabase.mockUserData.add(
+            User(
+                id = newUserId,
+                email = params.email,
+                password = params.password,
+                firstname = params.firstName,
+                lastname = params.lastName,
+                description = "",
+                pictureUrl = null,
+                age = 20,
+                totalClap =  0,
+                isMale = params.isMale)
+        )
+
+        MockUserDatabase.mockUserSession.add(
+            UserSession(
+                id = newSessionId,
+                userId = newUserId,
+                token = token
+            )
+        )
+
+        return Observable.just(token)
     }
 }

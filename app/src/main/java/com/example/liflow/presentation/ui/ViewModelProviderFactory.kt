@@ -19,6 +19,7 @@ import com.example.liflow.presentation.ui.post.viewmodel.PostDetailsViewModel
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfilePostViewModel
 import com.example.liflow.presentation.ui.profile.viewmodel.CurrentProfileViewModel
 import com.example.liflow.presentation.ui.profile.viewmodel.ProfileDetailsViewModel
+import com.example.liflow.presentation.ui.register.viewmodel.RegisterViewModel
 import com.example.liflow.presentation.ui.search.viewmodel.SearchViewModel
 import com.example.liflow.presentation.ui.splash.SplashViewModel
 import javax.inject.Inject
@@ -83,6 +84,12 @@ class ViewModelProviderFactory: ViewModelProvider.NewInstanceFactory {
             }
             modelClass.isAssignableFrom(ProfileDetailsViewModel::class.java) -> {
                 ProfileDetailsViewModel(userDomain) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(
+                    userDomain,
+                    sessionDomain
+                ) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

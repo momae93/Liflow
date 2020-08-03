@@ -4,10 +4,10 @@ import com.example.liflow.data.user.local.model.*
 
 class MockUserDatabase {
     companion object {
-        val mockUserData = listOf(
+        val mockUserData = mutableListOf(
             User(
                 id = 1,
-                username = "a",
+                email = "a",
                 password = "p",
                 firstname = "Mickael",
                 lastname = "Au",
@@ -19,7 +19,7 @@ class MockUserDatabase {
             ),
             User(
                 id = 2,
-                username = "johndoe",
+                email = "johndoe",
                 password = "pwd",
                 firstname = "John",
                 lastname = "Doe",
@@ -31,7 +31,7 @@ class MockUserDatabase {
             )
         )
 
-        val mockUserSession = listOf(
+        val mockUserSession = mutableListOf(
             UserSession(
                 id = 1,
                 userId = 1,

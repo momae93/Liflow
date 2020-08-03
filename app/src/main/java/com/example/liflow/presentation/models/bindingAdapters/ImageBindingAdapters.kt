@@ -1,4 +1,4 @@
-package com.example.liflow.presentation.models
+package com.example.liflow.presentation.models.bindingAdapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

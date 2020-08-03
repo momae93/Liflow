@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.liflow.presentation.ui.register.viewmodel.RegisterViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorWhite"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            tools:context=".presentation.ui.register.view.RegisterActivity">
+
+            <TextView
+                android:id="@+id/activity_register_textView_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/lato"
+                android:textAllCaps="true"
+                android:textColor="@color/colorGreenMint"
+                android:text="Register"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_textInputLayout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="@{!viewModel.registerForm.email.valid}"
+                app:errorText="@{viewModel.registerForm.email.error}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textView_register">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_register_editText_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/activity_login_email_hint"
+                    android:text="@={viewModel.registerForm.email.fieldValue}"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_textInputLayout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="@{!viewModel.registerForm.password.valid}"
+                app:errorText="@{viewModel.registerForm.password.error}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textInputLayout_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_register_editText_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/activity_login_password_hint"
+                    android:text="@={viewModel.registerForm.password.fieldValue}"
+                    android:inputType="textPassword"
+                    android:textAllCaps="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_textInputLayout_firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="@{!viewModel.registerForm.firstName.valid}"
+                app:errorText="@{viewModel.registerForm.firstName.error}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textInputLayout_password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_register_editText_firstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="FIRSTNAME"
+                    android:text="@={viewModel.registerForm.firstName.fieldValue}"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_textInputLayout_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="@{!viewModel.registerForm.lastName.valid}"
+                app:errorText="@{viewModel.registerForm.lastName.error}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textInputLayout_firstName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_register_editText_lastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:hint="LASTNAME"
+                    android:text="@={viewModel.registerForm.lastName.fieldValue}"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/activity_register_textInputLayout_birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="@{!viewModel.registerForm.birthdate.valid}"
+                app:errorText="@{viewModel.registerForm.birthdate.error}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textInputLayout_lastName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/activity_register_editText_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:onClick="@{() -> viewModel.onBirthDateClick()}"
+                    android:text="@{viewModel.registerForm.birthdate.fieldValue}"
+                    android:focusable="false"
+                    android:hint="BIRTHDATE"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/activity_register_textView_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="32dp"
+                android:text="GENDER"
+                app:layout_constraintStart_toStartOf="@+id/activity_register_textInputLayout_birthdate"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textInputLayout_birthdate" />
+
+            <ImageButton
+                android:id="@+id/activity_register_imageButton_male_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@null"
+                android:src="@drawable/ic_male_gender"
+                android:tint="@{viewModel.registerForm.isMale() ? @color/colorGreenMint : @color/colorBlack}"
+                android:onClick="@{() -> viewModel.onGenderMaleClick()}"
+                app:layout_constraintEnd_toStartOf="@+id/activity_register_imageButton_female_gender"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_textView_gender" />
+
+            <ImageButton
+                android:id="@+id/activity_register_imageButton_female_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:tint="@{viewModel.registerForm.isMale() ? @color/colorBlack : @color/colorGreenMint}"
+                android:onClick="@{() -> viewModel.onGenderFemaleClick()}"
+                android:src="@drawable/ic_female_gender"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_register_imageButton_male_gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/activity_register_imageButton_male_gender"
+                app:layout_constraintTop_toTopOf="@+id/activity_register_imageButton_male_gender" />
+
+            <Button
+                android:id="@+id/activity_register_button_register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/button_mint_normal"
+                android:fontFamily="@font/roboto"
+                android:onClick="@{() -> viewModel.onRegister()}"
+                android:text="GO !"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_register_imageButton_male_gender" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

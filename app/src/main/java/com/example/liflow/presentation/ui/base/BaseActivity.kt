@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import dagger.android.AndroidInjection
 
-abstract class BaseActivity<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: ViewModel>:
+abstract class BaseActivity<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: BaseViewModel<NAVIGATOR>, NAVIGATOR: IBaseNavigator>:
     AppCompatActivity() {
     private lateinit var viewBinding: VIEW_DATA_BINDING
     private lateinit var viewModel: VIEW_MODEL
@@ -17,6 +17,9 @@ abstract class BaseActivity<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: View
         super.onCreate(savedInstanceState)
         performViewBinding()
         initObservers()
+        viewModel = getViewModel()
+        viewModel.setNavigator(getNavigator())
+        viewBinding.lifecycleOwner = this
     }
 
     abstract fun getLayoutId(): Int
@@ -25,7 +28,9 @@ abstract class BaseActivity<VIEW_DATA_BINDING: ViewDataBinding, VIEW_MODEL: View
 
     abstract fun getViewModel(): VIEW_MODEL
 
-    abstract fun initObservers()
+    abstract fun getNavigator(): NAVIGATOR
+
+    open fun initObservers() {}
 
     fun getViewBinding(): ViewDataBinding = viewBinding
 

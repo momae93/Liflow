@@ -1,6 +1,8 @@
 package com.example.liflow.presentation.ui.splash
 
-interface ISplashNavigator {
+import com.example.liflow.presentation.ui.base.IBaseNavigator
+
+interface ISplashNavigator: IBaseNavigator {
     fun navigateToLoginActivity()
     fun navigateToMainActivity()
 }

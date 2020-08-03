@@ -18,7 +18,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel, IMainNavigator>(), IMainNavigator {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var viewBinding: ActivityMainBinding
 
@@ -54,4 +54,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun initObservers() {}
+
+    override fun getNavigator(): IMainNavigator = this
 }

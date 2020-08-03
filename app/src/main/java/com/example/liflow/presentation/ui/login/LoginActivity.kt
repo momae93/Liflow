@@ -13,9 +13,10 @@ import com.example.liflow.databinding.ActivityLoginBinding
 import com.example.liflow.presentation.models.State
 import com.example.liflow.presentation.ui.ViewModelProviderFactory
 import com.example.liflow.presentation.ui.base.BaseActivity
+import com.example.liflow.presentation.ui.register.view.RegisterActivity
 import javax.inject.Inject
 
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILoginNavigator {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel, ILoginNavigator>(), ILoginNavigator {
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -50,9 +51,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), ILog
         finish()
     }
 
+    override fun navigateToRegisterActivity() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     override fun initObservers() {
         observeLogin()
     }
+
+    override fun getNavigator(): ILoginNavigator = this
 
     private fun observeLogin() {
         loginViewModel.loginStateLiveData.observe(this, Observer { state ->
