@@ -1,9 +1,6 @@
 package com.example.liflow.domain.post
 
-import com.example.liflow.domain.post.usecases.GetPostDetails
-import com.example.liflow.domain.post.usecases.GetRandomDailyPost
-import com.example.liflow.domain.post.usecases.PostClapsPost
-import com.example.liflow.domain.post.usecases.PostLikePost
+import com.example.liflow.domain.post.usecases.*
 import io.reactivex.rxjava3.observers.DisposableObserver
 import javax.inject.Inject
 
@@ -12,18 +9,21 @@ class PostDomain: IPostDomain {
     private var getRandomDailyPostUC: GetRandomDailyPost
     private var postLikePostUC: PostLikePost
     private var postClapsPostUC: PostClapsPost
+    private var postNewPostUC: PostNewPost
 
     @Inject
     constructor(
         getPostDetailsUC: GetPostDetails,
         postLikePostUC: PostLikePost,
         postClapsPostUC: PostClapsPost,
-        getRandomDailyPostUC: GetRandomDailyPost
+        getRandomDailyPostUC: GetRandomDailyPost,
+        postNewPostUC: PostNewPost
     ) {
         this.getPostDetailsUC = getPostDetailsUC
         this.postLikePostUC = postLikePostUC
         this.postClapsPostUC = postClapsPostUC
         this.getRandomDailyPostUC = getRandomDailyPostUC
+        this.postNewPostUC = postNewPostUC
     }
 
     override fun getPostDetails(
@@ -52,5 +52,12 @@ class PostDomain: IPostDomain {
         params: PostClapsPost.Params
     ) {
         postClapsPostUC.execute(observer, params)
+    }
+
+    override fun postNewPost(
+        observer: DisposableObserver<PostNewPost.Response>,
+        params: PostNewPost.Params
+    ) {
+        postNewPostUC.execute(observer, params)
     }
 }

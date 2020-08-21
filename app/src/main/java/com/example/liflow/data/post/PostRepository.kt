@@ -5,10 +5,7 @@ import com.example.liflow.data.post.local.MockPostDatabase
 import com.example.liflow.data.post.local.model.LikedPost
 import com.example.liflow.data.user.local.MockUserDatabase
 import com.example.liflow.domain.post.IPostRepository
-import com.example.liflow.domain.post.usecases.GetPostDetails
-import com.example.liflow.domain.post.usecases.GetRandomDailyPost
-import com.example.liflow.domain.post.usecases.PostClapsPost
-import com.example.liflow.domain.post.usecases.PostLikePost
+import com.example.liflow.domain.post.usecases.*
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 import javax.inject.Named
@@ -104,5 +101,17 @@ class PostRepository @Inject constructor() : IPostRepository {
             description = postDetails.description,
             totalClap = postDetails.totalClap
         ))
+    }
+
+    override fun postNewPost(params: PostNewPost.Params): Observable<PostNewPost.Response> {
+        val newPost = PostNewPost.Response(
+            id = 1,
+            categoryId = params.categoryId,
+            title = params.title,
+            description = params.description,
+            solution = params.solution
+        )
+
+        return Observable.just(newPost)
     }
 }

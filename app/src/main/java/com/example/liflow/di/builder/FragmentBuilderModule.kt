@@ -8,6 +8,7 @@ import com.example.liflow.presentation.ui.like.fragment.LikeFragment
 import com.example.liflow.presentation.ui.like.fragment.LikePostsFragment
 import com.example.liflow.presentation.ui.like.fragment.LikeUsersFragment
 import com.example.liflow.presentation.ui.post.fragment.DailyPostFragment
+import com.example.liflow.presentation.ui.post.fragment.NewPostFragment
 import com.example.liflow.presentation.ui.post.fragment.PostDetailsFragment
 import com.example.liflow.presentation.ui.profile.fragment.CurrentCurrentProfileFragment
 import com.example.liflow.presentation.ui.profile.fragment.ProfileDetailsFragment
@@ -65,4 +66,8 @@ abstract class FragmentBuilderModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun bindProfileDetailsFragment(): ProfileDetailsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun bindNewPostFragment(): NewPostFragment
 }

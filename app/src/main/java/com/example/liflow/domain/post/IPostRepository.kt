@@ -1,9 +1,6 @@
 package com.example.liflow.domain.post
 
-import com.example.liflow.domain.post.usecases.GetPostDetails
-import com.example.liflow.domain.post.usecases.GetRandomDailyPost
-import com.example.liflow.domain.post.usecases.PostClapsPost
-import com.example.liflow.domain.post.usecases.PostLikePost
+import com.example.liflow.domain.post.usecases.*
 import io.reactivex.rxjava3.core.Observable
 
 interface IPostRepository {
@@ -11,4 +8,5 @@ interface IPostRepository {
     fun getRandomDailyPost(params: GetRandomDailyPost.Params): Observable<GetRandomDailyPost.Response>
     fun postLikePost(params: PostLikePost.Params): Observable<PostLikePost.Response>
     fun postClapsPost(params: PostClapsPost.Params): Observable<PostClapsPost.Response>
+    fun postNewPost(params: PostNewPost.Params): Observable<PostNewPost.Response>
 }

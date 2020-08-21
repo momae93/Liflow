@@ -26,7 +26,7 @@
                     app:destination="@id/navigation_profile_details" />
         </fragment>
 
-        <fragment
+        <dialog
             android:id="@+id/navigation_new"
             android:name="com.example.liflow.presentation.ui.post.fragment.NewPostFragment"
             android:label="@string/title_new"
@@ -102,4 +102,8 @@
                     android:name="userId"
                     app:argType="integer" />
         </fragment>
+        <activity
+            android:id="@+id/navigation_register_activity"
+            android:name="com.example.liflow.presentation.ui.register.view.RegisterActivity"
+            android:label="RegisterActivity" />
 </navigation>

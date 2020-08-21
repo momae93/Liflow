@@ -39,7 +39,7 @@ class DailyPostFragment :
         viewBinding = getViewBinding() as FragmentDailyPostBinding
         viewModel.getRandomDailyPost()
         viewBinding.fragmentDailyPostCardStackViewContainer.adapter = recyclerAdapter
-        viewBinding.fragmentDailyPostCardStackViewContainer.layoutManager = manager
+//        viewBinding.fragmentDailyPostCardStackViewContainer.layoutManager = manager
     }
 
     override fun getLayoutId(): Int {

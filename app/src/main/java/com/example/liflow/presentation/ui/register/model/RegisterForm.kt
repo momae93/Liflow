@@ -1,7 +1,6 @@
 package com.example.liflow.presentation.ui.register.model
 
 import android.util.Patterns
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.liflow.presentation.models.FormField
 
@@ -21,7 +20,7 @@ class RegisterForm {
         return formFields.all { it.valid.value == true }
     }
 
-    class Email: FormField(errorMessage = "Email format is not valid") {
+    class Email: FormField<String>(errorMessage = "Email format is not valid") {
         override fun validate() {
             val value = fieldValue.value
             val isValid = !value.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(value).matches()
@@ -29,28 +28,28 @@ class RegisterForm {
         }
     }
 
-    class Password: FormField(errorMessage = "Password format is not valid") {
+    class Password: FormField<String>(errorMessage = "Password format is not valid") {
         override fun validate() {
             val isValid = !fieldValue.value.isNullOrEmpty()
             this.valid.value = isValid
         }
     }
 
-    class FirstName: FormField(errorMessage = "First name format is not valid") {
+    class FirstName: FormField<String>(errorMessage = "First name format is not valid") {
         override fun validate() {
             val isValid = !fieldValue.value.isNullOrEmpty()
             this.valid.value = isValid
         }
     }
 
-    class LastName: FormField(errorMessage = "Last name format is not valid") {
+    class LastName: FormField<String>(errorMessage = "Last name format is not valid") {
         override fun validate() {
             val isValid = !fieldValue.value.isNullOrEmpty()
             this.valid.value = isValid
         }
     }
 
-    class BirthDate: FormField(errorMessage = "Birth date format is not valid") {
+    class BirthDate: FormField<String>(errorMessage = "Birth date format is not valid") {
         override fun validate() {
             val isValid = !fieldValue.value.isNullOrEmpty()
             this.valid.value = isValid
